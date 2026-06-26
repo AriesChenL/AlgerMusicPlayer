@@ -1,6 +1,9 @@
 <template>
   <div class="app-container h-full w-full" :class="{ mobile: isMobile, noElectron: !isElectron }">
-    <n-config-provider :theme="theme === 'dark' ? darkTheme : lightTheme">
+    <n-config-provider
+      :theme="theme === 'dark' ? darkTheme : lightTheme"
+      :theme-overrides="theme === 'dark' ? darkThemeOverrides : lightThemeOverrides"
+    >
       <n-dialog-provider>
         <n-message-provider>
           <router-view></router-view>
@@ -14,7 +17,7 @@
 
 <script setup lang="ts">
 import { cloneDeep } from 'lodash';
-import { darkTheme, lightTheme } from 'naive-ui';
+import { darkTheme, type GlobalThemeOverrides, lightTheme } from 'naive-ui';
 import { computed, nextTick, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
@@ -33,6 +36,37 @@ import { audioService } from './services/audioService';
 import { initLxMusicRunner } from './services/LxMusicSourceRunner';
 import { isMobile } from './utils';
 import { useAppShortcuts } from './utils/appShortcuts';
+
+// naive-ui 主题覆盖：统一品牌绿与暗色面板，避免组件使用 naive 默认绿
+const PRIMARY = '#22c55e';
+const PRIMARY_HOVER = '#34d27b';
+const PRIMARY_PRESSED = '#16a34a';
+
+const commonThemeOverrides: GlobalThemeOverrides['common'] = {
+  primaryColor: PRIMARY,
+  primaryColorHover: PRIMARY_HOVER,
+  primaryColorPressed: PRIMARY_PRESSED,
+  primaryColorSuppl: PRIMARY_HOVER,
+  borderRadius: '8px',
+  borderRadiusSmall: '6px'
+};
+
+const lightThemeOverrides: GlobalThemeOverrides = {
+  common: { ...commonThemeOverrides }
+};
+
+const darkThemeOverrides: GlobalThemeOverrides = {
+  common: {
+    ...commonThemeOverrides,
+    bodyColor: '#0a0b0d',
+    cardColor: '#15161a',
+    modalColor: '#15161a',
+    popoverColor: '#2a2c31',
+    tableColor: '#15161a',
+    inputColor: '#15161a',
+    borderColor: '#2a2c31'
+  }
+};
 
 const { locale } = useI18n();
 const settingsStore = useSettingsStore();

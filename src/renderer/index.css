@@ -45,11 +45,11 @@
 }
 
 .theme-dark {
-  --bg-color: #000;
+  --bg-color: #0a0b0d;
   --text-color: #fff;
-  --bg-color-100: #161616;
-  --bg-color-200: #2d2d2d;
-  --bg-color-300: #3d3d3d;
+  --bg-color-100: #15161a;
+  --bg-color-200: #2a2c31;
+  --bg-color-300: #3a3d43;
   --text-color: #f8f9fa;
   --text-color-100: #e9ecef;
   --text-color-200: #dee2e6;

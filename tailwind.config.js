@@ -6,9 +6,14 @@ export default {
     extend: {
       colors: {
         primary: {
+          // 品牌绿，保持与 logo / README 徽章一致
           DEFAULT: '#22c55e',
-          light: '#22c55e',
-          dark: '#1eb154ff'
+          // 更浅的悬停色（原先误设为与 DEFAULT 相同）
+          light: '#4ade80',
+          // 更深的按下色
+          dark: '#16a34a',
+          hover: '#34d27b',
+          pressed: '#16a34a'
         },
         secondary: {
           DEFAULT: '#6c757d',
@@ -16,10 +21,11 @@ export default {
           dark: '#495057'
         },
         dark: {
-          DEFAULT: '#000',
-          100: '#161616',
-          200: '#2d2d2d',
-          300: '#3d3d3d'
+          // 微冷调 off-black，替代纯黑，增加层次与质感
+          DEFAULT: '#0a0b0d',
+          100: '#15161a',
+          200: '#2a2c31',
+          300: '#3a3d43'
         },
         light: {
           DEFAULT: '#fff',
