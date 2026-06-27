@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="h-4 w-3/4 skeleton-shimmer rounded-lg" />
-          <div class="mt-4 rounded-xl bg-light p-4 dark:bg-black">
+          <div class="mt-4 rounded-xl bg-light p-4 dark:bg-dark">
             <div class="mb-4 h-8 w-full skeleton-shimmer rounded-xl" />
             <div class="space-y-4">
               <div v-for="i in 5" :key="i" class="flex gap-3">
@@ -35,7 +35,7 @@
       </div>
       <div v-if="!isMobile" class="right">
         <div class="title"><div class="h-8 w-32 skeleton-shimmer rounded-lg" /></div>
-        <div class="rounded-2xl bg-light p-4 dark:bg-black">
+        <div class="rounded-2xl bg-light p-4 dark:bg-dark">
           <div class="space-y-2">
             <div
               v-for="i in 10"
@@ -511,7 +511,7 @@ const currentLoginType = computed(() => userStore.loginType);
 
     .record-list {
       @apply rounded-2xl;
-      @apply bg-light dark:bg-black;
+      @apply bg-light dark:bg-dark;
       height: calc(100% - 60px);
 
       .record-item {
@@ -536,7 +536,7 @@ const currentLoginType = computed(() => userStore.loginType);
 
 .play-list {
   @apply mt-4 py-4 px-2 rounded-xl flex-1 overflow-hidden;
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
 
   &-title {
     @apply text-lg;
@@ -582,7 +582,7 @@ const currentLoginType = computed(() => userStore.loginType);
 }
 
 .login-type {
-  @apply text-sm text-green-500 dark:text-green-400;
+  @apply text-sm text-primary-500 dark:text-primary-400;
 }
 
 .mobile {

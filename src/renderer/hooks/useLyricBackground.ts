@@ -14,6 +14,8 @@ type UseLyricBackgroundOptions = {
 };
 
 const DEFAULT_BG_COLOR = 'rgba(25, 25, 25, 1)';
+// 设计稿固定琥珀强调色（当前行高亮）
+const FIXED_LYRIC_ACTIVE = '#e08a3c';
 
 export function useLyricBackground(options: UseLyricBackgroundOptions = {}) {
   const currentBackground = ref('');
@@ -28,7 +30,8 @@ export function useLyricBackground(options: UseLyricBackgroundOptions = {}) {
       textColors.value = getTextColors();
       root.style.setProperty('--hover-bg-color', getHoverBackgroundColor(false));
       root.style.setProperty('--text-color-primary', textColors.value.primary);
-      root.style.setProperty('--text-color-active', textColors.value.active);
+      // 当前行高亮固定琥珀（贴设计稿），非高亮行保留自适应以保证可读性
+      root.style.setProperty('--text-color-active', FIXED_LYRIC_ACTIVE);
       if (writeBgColor) {
         root.style.setProperty('--bg-color', DEFAULT_BG_COLOR);
       }
@@ -40,7 +43,8 @@ export function useLyricBackground(options: UseLyricBackgroundOptions = {}) {
 
     root.style.setProperty('--hover-bg-color', getHoverBackgroundColor(isDark.value));
     root.style.setProperty('--text-color-primary', textColors.value.primary);
-    root.style.setProperty('--text-color-active', textColors.value.active);
+    // 当前行高亮固定琥珀（贴设计稿），非高亮行保留自适应以保证可读性
+    root.style.setProperty('--text-color-active', FIXED_LYRIC_ACTIVE);
 
     if (writeBgColor) {
       const bg = writeBgColor();

@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="search-result-page h-full w-full bg-white dark:bg-black transition-colors duration-500"
-  >
+  <div class="search-result-page h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar class="h-full" @scroll="handleScroll">
       <div class="search-result-content pb-32">
         <!-- Header Section -->
@@ -28,7 +26,7 @@
                 :class="
                   searchType === type.key
                     ? 'bg-primary text-white shadow-lg shadow-primary/25'
-                    : 'bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800'
+                    : 'bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800'
                 "
                 @click="handleTypeChange(type.key)"
               >
@@ -41,7 +39,7 @@
         <!-- Action Bar (Sticky) -->
         <section
           v-if="searchDetail?.songs?.length && searchType === SEARCH_TYPE.MUSIC"
-          class="action-bar sticky top-0 z-20 page-padding-x py-3 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
+          class="action-bar sticky top-0 z-20 page-padding-x py-3 bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
         >
           <div class="flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
@@ -62,7 +60,7 @@
 
               <button
                 v-if="!isSelecting && isElectron"
-                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                 @click="startSelect"
               >
                 <i class="ri-checkbox-multiple-line text-lg" />
@@ -101,7 +99,7 @@
               <!-- Layout Toggle -->
               <button
                 v-if="!isMobile"
-                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                 @click="toggleLayout"
               >
                 <i :class="isCompactLayout ? 'ri-list-check-2' : 'ri-grid-line'" class="text-lg" />

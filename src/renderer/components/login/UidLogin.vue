@@ -136,7 +136,7 @@ defineExpose({
     @apply placeholder-gray-500 dark:placeholder-gray-400;
 
     &:focus {
-      @apply border-green-500;
+      @apply border-primary-500;
     }
   }
 
@@ -144,7 +144,7 @@ defineExpose({
     width: 250px;
     height: 40px;
     @apply mt-10 text-white rounded-xl;
-    @apply bg-green-600 hover:bg-green-700 transition-colors;
+    @apply bg-primary-600 hover:bg-primary-700 transition-colors;
   }
 }
 </style>

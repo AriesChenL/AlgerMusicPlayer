@@ -40,7 +40,7 @@
 
         <div class="mt-4">
           <p
-            class="text-sm text-gray-700 dark:text-gray-200 text-center cursor-pointer hover:text-green-500"
+            class="text-sm text-gray-700 dark:text-gray-200 text-center cursor-pointer hover:text-primary-500"
             @click="copyText"
           >
             {{ t('comp.coffee.groupText') }}
@@ -49,7 +49,7 @@
         <div class="mt-4">
           <!-- 赞赏列表地址 -->
           <p
-            class="text-sm text-green-600 dark:text-gray-200 text-center cursor-pointer hover:text-green-500"
+            class="text-sm text-primary-600 dark:text-gray-200 text-center cursor-pointer hover:text-primary-500"
             @click="toDonateList"
           >
             {{ t('comp.coffee.donateList') }}

@@ -1,5 +1,5 @@
 <template>
-  <div class="local-music-page h-full w-full bg-white dark:bg-black transition-colors duration-500">
+  <div class="local-music-page h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar class="h-full">
       <div class="local-music-content pb-32">
         <!-- Hero Section -->
@@ -39,7 +39,7 @@
 
         <!-- Action Bar (Sticky on scroll) -->
         <section
-          class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
+          class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
         >
           <div class="flex items-center justify-between gap-4">
             <!-- 左侧：搜索框 -->
@@ -71,7 +71,7 @@
 
               <!-- 扫描按钮 -->
               <button
-                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                 :disabled="localMusicStore.scanning"
                 @click="handleScan"
               >
@@ -83,7 +83,7 @@
 
               <!-- 添加文件夹按钮 -->
               <button
-                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                 @click="handleAddFolder"
               >
                 <i class="ri-folder-add-line text-lg" />
@@ -92,7 +92,7 @@
               <!-- 文件夹管理按钮 -->
               <button
                 v-if="localMusicStore.folderPaths.length > 0"
-                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                 @click="showFolderManager = true"
               >
                 <i class="ri-folder-settings-line text-lg" />
@@ -157,7 +157,7 @@
           <div
             v-for="folder in localMusicStore.folderPaths"
             :key="folder"
-            class="flex items-center justify-between p-3 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800"
+            class="flex items-center justify-between p-3 rounded-xl bg-neutral-50 dark:bg-dark-100 border border-neutral-100 dark:border-neutral-800"
           >
             <div class="flex items-center gap-3 min-w-0 flex-1">
               <i class="ri-folder-line text-lg text-primary flex-shrink-0" />

@@ -176,9 +176,9 @@ watch(
           --n-rail-height: 3px;
           --n-rail-color: rgba(255, 255, 255, 0.15);
           --n-rail-color-dark: rgba(255, 255, 255, 0.15);
-          --n-fill-color: #22c55e;
+          --n-fill-color: #e08a3c;
           --n-handle-size: 0px; /* 隐藏滑块 */
-          --n-handle-color: #22c55e;
+          --n-handle-color: #e08a3c;
 
           &:hover {
             --n-handle-size: 10px; /* 鼠标悬停时显示滑块 */
@@ -190,7 +190,7 @@ watch(
 
           .n-slider-fill {
             @apply rounded-full !important;
-            box-shadow: 0 0 4px rgba(30, 215, 96, 0.5); /* 发光效果 */
+            box-shadow: 0 0 4px rgba(224, 138, 60, 0.5); /* 发光效果 */
           }
 
           .n-slider-handle {
@@ -286,14 +286,14 @@ watch(
           @apply bg-gray-100 dark:bg-gray-800;
 
           .iconfont {
-            @apply text-xl text-green-500 transition hover:text-green-600;
+            @apply text-xl text-primary-500 transition hover:text-primary-600;
           }
         }
       }
 
       .mini-list-icon {
         @apply text-xl p-1 transition cursor-pointer;
-        @apply hover:text-green-500;
+        @apply hover:text-primary-500;
       }
     }
   }
@@ -308,7 +308,7 @@ watch(
   .mobile-play-list-back {
     backdrop-filter: blur(20px);
     @apply absolute top-0 left-0 w-full h-full;
-    @apply bg-light dark:bg-black bg-opacity-90;
+    @apply bg-light dark:bg-dark bg-opacity-90;
   }
 
   .mobile-play-list-item {

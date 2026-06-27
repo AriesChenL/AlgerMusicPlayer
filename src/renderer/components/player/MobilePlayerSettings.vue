@@ -42,7 +42,7 @@
                 <span class="text-sm font-medium text-white/80">
                   {{ t('player.settings.playbackSpeed') }}
                 </span>
-                <span class="text-sm text-green-400 font-medium">{{ playbackRate }}x</span>
+                <span class="text-sm text-primary-400 font-medium">{{ playbackRate }}x</span>
               </div>
               <div class="flex flex-wrap gap-2">
                 <button
@@ -52,7 +52,7 @@
                   class="px-4 py-2 rounded-full text-sm font-medium transition-colors"
                   :class="
                     playbackRate === option
-                      ? 'bg-green-500 text-white'
+                      ? 'bg-primary-500 text-white'
                       : 'bg-white/10 text-white/70 hover:bg-white/15'
                   "
                 >
@@ -70,18 +70,18 @@
                 <span class="text-sm font-medium text-white/80">
                   {{ t('player.sleepTimer.title') }}
                 </span>
-                <span v-if="hasTimerActive" class="text-sm text-green-400 font-medium">
+                <span v-if="hasTimerActive" class="text-sm text-primary-400 font-medium">
                   {{ timerStatusText }}
                 </span>
               </div>
 
               <!-- 已激活状态 -->
               <div v-if="hasTimerActive" class="space-y-3">
-                <div class="p-4 rounded-2xl bg-green-500/15 border border-green-500/30">
+                <div class="p-4 rounded-2xl bg-primary-500/15 border border-primary-500/30">
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                      <i class="ri-timer-line text-green-400 text-xl"></i>
-                      <span class="text-green-400">
+                      <i class="ri-timer-line text-primary-400 text-xl"></i>
+                      <span class="text-primary-400">
                         {{ timerDisplayText }}
                       </span>
                     </div>
@@ -140,7 +140,7 @@
                     <button
                       @click="setCustomTimeTimer"
                       :disabled="!customMinutes || Number(customMinutes) < 1"
-                      class="px-4 py-2 rounded-full text-sm font-medium bg-green-500 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                      class="px-4 py-2 rounded-full text-sm font-medium bg-primary-500 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {{ t('player.sleepTimer.set') }}
                     </button>

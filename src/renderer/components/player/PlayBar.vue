@@ -74,7 +74,7 @@
           <span
             v-for="(artists, artistsindex) in artistList"
             :key="artistsindex"
-            class="cursor-pointer hover:text-green-500"
+            class="cursor-pointer hover:text-primary"
             @click="handleArtistClick(artists.id)"
           >
             {{ artists.name }}{{ artistsindex < artistList.length - 1 ? ' / ' : '' }}
@@ -139,7 +139,7 @@
         <template #trigger>
           <i
             class="iconfont ri-netease-cloud-music-line"
-            :class="{ 'text-green-500': isLyricWindowOpen, 'disabled-icon': !playMusic?.id }"
+            :class="{ 'text-primary': isLyricWindowOpen, 'disabled-icon': !playMusic?.id }"
             @click="playMusic?.id && openLyricWindow()"
           ></i>
         </template>
@@ -158,7 +158,7 @@
       <n-tooltip trigger="hover" :z-index="9999999">
         <template #trigger>
           <i
-            class="iconfont icon-list text-2xl hover:text-green-500 transition-colors cursor-pointer"
+            class="iconfont icon-list text-2xl hover:text-primary transition-colors cursor-pointer"
             @click="openPlayListDrawer"
           ></i>
         </template>
@@ -312,8 +312,13 @@ const openPlayListDrawer = () => {
 }
 
 .music-play-bar {
-  @apply h-20 w-full absolute bottom-0 left-0 flex items-center box-border px-6 py-2 pt-3;
-  @apply bg-light dark:bg-dark shadow-2xl shadow-gray-300;
+  @apply h-[78px] w-full absolute bottom-0 left-0 flex items-center box-border py-2;
+  padding-left: 22px;
+  padding-right: 22px;
+  gap: 16px;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -8px 30px -18px rgba(0, 0, 0, 0.5);
   z-index: 9999;
   animation-duration: 0.5s !important;
 
@@ -328,45 +333,73 @@ const openPlayListDrawer = () => {
   }
 
   .music-content {
-    width: 200px;
-    @apply ml-4;
+    width: 150px;
+    @apply ml-0;
 
     &-title {
-      @apply text-base;
+      @apply text-sm font-bold;
+      color: var(--text);
     }
 
     &-name {
-      @apply text-xs mt-1 opacity-80;
+      @apply text-xs mt-1;
+      color: var(--text3);
     }
   }
 }
 
 .play-bar-img {
-  @apply w-14 h-14 rounded-2xl;
+  @apply w-[52px] h-[52px];
+  border-radius: 13px;
 }
 
 .music-buttons {
-  @apply mx-6 flex-1 flex justify-center;
+  @apply flex-1 flex justify-center items-center;
+  gap: 18px;
 
-  .iconfont {
-    @apply text-2xl transition;
-    @apply hover:text-green-500;
+  /* 上一首 / 下一首：38px 圆形，悬停 elev 底（贴设计稿） */
+  .music-buttons-prev,
+  .music-buttons-next {
+    @apply flex justify-center items-center cursor-pointer transition;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--text2);
+
+    .iconfont {
+      @apply text-2xl;
+    }
+
+    &:hover {
+      background: var(--elev);
+      color: var(--text);
+    }
   }
 
-  .icon {
-    @apply text-3xl;
-    @apply hover:text-green-500;
-  }
-
-  @apply flex items-center;
-
-  > div {
-    @apply cursor-pointer;
-  }
-
+  /* 主播放键：50px 琥珀渐变圆 */
   &-play {
-    @apply flex justify-center items-center w-20 h-12 rounded-full mx-4 transition text-gray-500;
-    @apply bg-gray-100 bg-opacity-60 dark:bg-gray-800 dark:bg-opacity-60 hover:bg-gray-200;
+    @apply flex justify-center items-center cursor-pointer transition;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(140deg, var(--accent2), var(--accent));
+    color: var(--accentText);
+    box-shadow:
+      0 10px 22px -7px var(--accentLine),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+    .icon {
+      @apply text-2xl;
+      color: var(--accentText) !important;
+    }
+
+    &:hover {
+      transform: scale(1.06);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }
 
@@ -383,7 +416,7 @@ const openPlayListDrawer = () => {
 
   .iconfont {
     @apply text-2xl transition;
-    @apply hover:text-green-500;
+    @apply hover:text-primary;
   }
 
   .volume-slider {
@@ -406,10 +439,24 @@ const openPlayListDrawer = () => {
 
 .audio-button {
   @apply flex items-center;
+  gap: 4px;
 
+  /* 右侧按钮组：36px 圆形，悬停 elev 底（贴设计稿） */
   .iconfont {
-    @apply text-2xl transition cursor-pointer mx-3;
-    @apply hover:text-green-500;
+    @apply transition cursor-pointer;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: var(--text3);
+
+    &:hover {
+      background: var(--elev);
+      color: var(--text);
+    }
   }
 }
 
@@ -421,7 +468,7 @@ const openPlayListDrawer = () => {
     &-back {
       backdrop-filter: blur(20px);
       @apply absolute top-0 left-0 w-full h-full;
-      @apply bg-light dark:bg-black bg-opacity-75;
+      @apply bg-light dark:bg-dark bg-opacity-75;
     }
     &-content {
       @apply mx-2;
@@ -466,9 +513,9 @@ const openPlayListDrawer = () => {
     --n-rail-height: 4px;
     --n-rail-color: theme('colors.gray.200');
     --n-rail-color-dark: theme('colors.gray.700');
-    --n-fill-color: theme('colors.green.500');
+    --n-fill-color: theme('colors.primary.DEFAULT');
     --n-handle-size: 12px;
-    --n-handle-color: theme('colors.green.500');
+    --n-handle-color: theme('colors.primary.DEFAULT');
 
     &.n-slider--vertical {
       height: 100%;
@@ -514,10 +561,14 @@ const openPlayListDrawer = () => {
 }
 
 .play-bar-img-wrapper {
-  @apply relative cursor-pointer w-14 h-14;
+  @apply relative cursor-pointer;
+  width: 52px;
+  height: 52px;
+  flex: none;
 
   .hover-arrow {
-    @apply absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 rounded-2xl;
+    @apply absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300;
+    border-radius: 13px;
     background: rgba(0, 0, 0, 0.5);
 
     .hover-content {
@@ -553,7 +604,7 @@ const openPlayListDrawer = () => {
 }
 
 .intelligence-active {
-  @apply text-green-500 hover:text-green-600 !important;
+  @apply text-primary hover:text-primary-pressed !important;
 }
 
 .disabled-icon {
@@ -579,7 +630,7 @@ const openPlayListDrawer = () => {
 .music-eq {
   @apply p-4 rounded-3xl;
   backdrop-filter: blur(20px);
-  @apply bg-light dark:bg-black bg-opacity-75;
+  @apply bg-light dark:bg-dark bg-opacity-75;
 }
 
 .music-play-list-content {
@@ -637,7 +688,7 @@ const openPlayListDrawer = () => {
 }
 
 .playback-rate-badge {
-  @apply ml-2 px-1.5 h-4 flex items-center text-xs rounded bg-green-500 bg-opacity-15 text-green-600 dark:text-green-400;
+  @apply ml-2 px-1.5 h-4 flex items-center text-xs rounded bg-primary bg-opacity-15 text-primary dark:text-primary;
   font-weight: 500;
   vertical-align: 1px;
 }

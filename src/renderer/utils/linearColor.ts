@@ -319,6 +319,12 @@ export const createGradientString = (
  */
 const PRESET_LYRIC_COLORS: LyricThemeColor[] = [
   {
+    id: 'amber',
+    name: 'Amber', // 设计稿暖色琥珀，作为默认高亮色
+    light: '#e08a3c',
+    dark: '#f4a85e'
+  },
+  {
     id: 'spotify-green',
     name: 'Spotify Green', // 后备名称，实际使用时会被国际化替换
     light: '#1db954',

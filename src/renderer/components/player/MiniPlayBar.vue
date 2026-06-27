@@ -21,7 +21,7 @@
           <span
             v-for="(artists, artistsindex) in artistList"
             :key="artistsindex"
-            class="cursor-pointer hover:text-green-500"
+            class="cursor-pointer hover:text-primary-500"
             @click.stop="handleArtistClick(artists.id)"
           >
             {{ artists.name }}{{ artistsindex < artistList.length - 1 ? ' / ' : '' }}
@@ -399,7 +399,7 @@ const setMusicFull = () => {
   &.play {
     @apply bg-primary text-white;
     &:hover {
-      @apply bg-green-800;
+      @apply bg-primary-800;
     }
   }
 
@@ -480,9 +480,9 @@ const setMusicFull = () => {
     --n-rail-height: 4px;
     --n-rail-color: theme('colors.gray.200');
     --n-rail-color-dark: theme('colors.gray.700');
-    --n-fill-color: theme('colors.green.500');
+    --n-fill-color: theme('colors.primary.500');
     --n-handle-size: 12px;
-    --n-handle-color: theme('colors.green.500');
+    --n-handle-color: theme('colors.primary.500');
 
     &.n-slider--vertical {
       height: 100%;

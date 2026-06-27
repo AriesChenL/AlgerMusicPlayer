@@ -305,7 +305,9 @@ export default {
   localMusic: 'ローカル音楽',
   pages: {
     toplist: {
-      desc: '最も権威ある音楽チャート、今一番ホットな音楽を発見'
+      desc: '最も権威ある音楽チャート、今一番ホットな音楽を発見',
+      official: '公式チャート',
+      more: 'その他のチャート'
     },
     mv: {
       desc: '素晴らしい動画コンテンツを探索',

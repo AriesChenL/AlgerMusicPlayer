@@ -1,5 +1,5 @@
 <template>
-  <div class="music-list-page h-full w-full bg-white dark:bg-black transition-colors duration-500">
+  <div class="music-list-page h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar ref="scrollbarRef" class="h-full" @scroll="handleScroll">
       <div class="music-list-content" :style="{ paddingBottom: contentPaddingBottom }">
         <!-- Hero Section 和 Action Bar -->
@@ -115,7 +115,7 @@
         <!-- Action Bar (Sticky) -->
         <section
           v-if="songList.length > 0"
-          class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
+          class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
         >
           <div class="flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
@@ -135,7 +135,7 @@
                 :class="
                   isCollected
                     ? 'bg-neutral-100 dark:bg-neutral-800 text-red-500 border-neutral-200 dark:border-neutral-700'
-                    : 'bg-neutral-50 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800'
+                    : 'bg-neutral-50 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-800'
                 "
                 @click="toggleCollect"
               >
@@ -156,7 +156,7 @@
 
               <button
                 v-if="!isSelecting && isElectron"
-                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                 @click="startSelect"
               >
                 <i class="ri-checkbox-multiple-line text-lg" />
@@ -220,7 +220,7 @@
               <n-tooltip v-if="currentPlayingIndex >= 0" trigger="hover">
                 <template #trigger>
                   <button
-                    class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                    class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                     @click="scrollToCurrentSong"
                   >
                     <i class="ri-focus-3-line text-lg" />
@@ -233,7 +233,7 @@
               <n-tooltip v-if="!isMobile" trigger="hover">
                 <template #trigger>
                   <button
-                    class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                    class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                     @click="toggleLayout"
                   >
                     <i
@@ -253,7 +253,7 @@
               <n-tooltip trigger="hover">
                 <template #trigger>
                   <button
-                    class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
+                    class="action-btn-icon w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all"
                     @click="scrollToTop"
                   >
                     <i class="ri-arrow-up-line text-lg" />

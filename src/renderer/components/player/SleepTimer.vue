@@ -254,7 +254,7 @@ onUnmounted(() => {
 
       // 定时值显示
       .timer-value {
-        @apply text-4xl font-semibold mb-2 text-green-500;
+        @apply text-4xl font-semibold mb-2 text-primary-500;
 
         &.countdown-timer {
           font-variant-numeric: tabular-nums;

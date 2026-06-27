@@ -97,7 +97,7 @@ provide('openPlaylistDrawer', openPlaylistDrawer);
 <style lang="scss" scoped>
 .mobile-layout {
   @apply w-screen h-screen flex flex-col;
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
   @apply overflow-hidden;
   position: relative;
 }
@@ -122,7 +122,7 @@ provide('openPlaylistDrawer', openPlaylistDrawer);
 
 // 底部菜单固定在底部
 .mobile-bottom-menu {
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
   @apply border-t border-gray-200 dark:border-gray-800;
 }
 

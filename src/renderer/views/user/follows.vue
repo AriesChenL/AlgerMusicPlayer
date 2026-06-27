@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-full bg-white dark:bg-neutral-900 transition-colors duration-500">
+  <div class="h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar class="h-full">
       <div class="w-full pb-32">
         <!-- Loading State -->

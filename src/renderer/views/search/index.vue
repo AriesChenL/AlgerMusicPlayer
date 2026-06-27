@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="search-page-container h-full w-full bg-white dark:bg-black transition-colors duration-500"
-  >
+  <div class="search-page-container h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar class="h-full">
       <div class="search-content w-full pb-32 pt-6 page-padding">
         <!-- Search Header / Hero -->
@@ -23,7 +21,7 @@
               <div
                 v-for="(item, index) in hotSearchData?.data"
                 :key="index"
-                class="hot-search-card group flex items-center gap-4 p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 cursor-pointer transition-all duration-300 animate-item"
+                class="hot-search-card group flex items-center gap-4 p-4 rounded-2xl bg-neutral-50 dark:bg-dark-100/50 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 cursor-pointer transition-all duration-300 animate-item"
                 :style="{ animationDelay: calculateAnimationDelay(index, 0.03) }"
                 @click="handleSearch(item.searchWord)"
               >
@@ -67,7 +65,7 @@
               <div
                 v-for="(item, index) in searchHistory"
                 :key="index"
-                class="group relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 dark:bg-neutral-900 text-sm text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all cursor-pointer"
+                class="group relative flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 dark:bg-dark-100 text-sm text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all cursor-pointer"
                 @click="handleSearch(item.keyword, item.type)"
               >
                 <span>{{ item.keyword }}</span>

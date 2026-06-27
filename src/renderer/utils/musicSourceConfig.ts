@@ -30,7 +30,7 @@ export const MUSIC_SOURCE_REGISTRY: MusicSourceMeta[] = [
   // 扩展音源 (GDMusicStrategy)
   { key: 'gdmusic', icon: 'ri-google-fill', color: '#4285f4', group: 'extended' },
   // 插件音源 (需要用户配置)
-  { key: 'lxMusic', icon: 'ri-leaf-fill', color: '#22c55e', group: 'plugin' },
+  { key: 'lxMusic', icon: 'ri-leaf-fill', color: '#e08a3c', group: 'plugin' },
   { key: 'custom', icon: 'ri-plug-fill', color: '#8b5cf6', group: 'plugin' }
 ];
 

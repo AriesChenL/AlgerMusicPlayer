@@ -305,7 +305,9 @@ export default {
   localMusic: 'Local Music',
   pages: {
     toplist: {
-      desc: 'The most authoritative music charts, discover the hottest music'
+      desc: 'The most authoritative music charts, discover the hottest music',
+      official: 'Official Charts',
+      more: 'More Charts'
     },
     mv: {
       desc: 'Explore amazing video content',

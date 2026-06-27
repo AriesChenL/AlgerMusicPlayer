@@ -1,4 +1,6 @@
 export type ThemeType = 'dark' | 'light';
+export type AccentType = 'orange' | 'amber' | 'terracotta';
+export type RadiusType = 'default' | 'round' | 'sharp';
 
 // 检测系统主题
 export const getSystemTheme = (): ThemeType => {
@@ -17,8 +19,33 @@ export const applyTheme = (theme: ThemeType) => {
     document.documentElement.classList.remove('dark');
   }
 
+  // 暖色设计令牌通过 data-theme 切换（暗色为默认，明色覆盖）
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+
   // 保存主题到本地存储
   localStorage.setItem('theme', theme);
+};
+
+// 应用强调色
+export const applyAccent = (accent: AccentType) => {
+  if (accent && accent !== 'orange') {
+    document.documentElement.setAttribute('data-accent', accent);
+  } else {
+    document.documentElement.removeAttribute('data-accent');
+  }
+};
+
+// 应用圆角风格
+export const applyRadius = (radius: RadiusType) => {
+  if (radius && radius !== 'default') {
+    document.documentElement.setAttribute('data-radius', radius);
+  } else {
+    document.documentElement.removeAttribute('data-radius');
+  }
 };
 
 // 获取当前主题

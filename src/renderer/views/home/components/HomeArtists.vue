@@ -13,12 +13,6 @@
       v-else
       ref="scrollContainer"
       class="artists-scroll relative overflow-x-auto overflow-y-hidden pt-2"
-      style="
-        margin-left: calc(var(--page-pl) * -1);
-        margin-right: calc(var(--page-pr) * -1);
-        padding-left: var(--page-pl);
-        padding-right: var(--page-pr);
-      "
       @wheel="handleWheel"
     >
       <div class="artists-track flex gap-6 md:gap-8 lg:gap-10">
@@ -56,11 +50,19 @@
 
       <!-- Scroll Indicators (Optional visual feedback) -->
       <div
-        class="scroll-fade-left pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white dark:from-black to-transparent opacity-0 transition-opacity"
+        class="scroll-fade-left pointer-events-none absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r to-transparent opacity-0 transition-opacity"
+        style="
+          --tw-gradient-from: var(--win);
+          background-image: linear-gradient(to right, var(--win), transparent);
+        "
         :class="{ 'opacity-100': showLeftFade }"
       />
       <div
-        class="scroll-fade-right pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white dark:from-black to-transparent opacity-0 transition-opacity"
+        class="scroll-fade-right pointer-events-none absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l to-transparent opacity-0 transition-opacity"
+        style="
+          --tw-gradient-from: var(--win);
+          background-image: linear-gradient(to left, var(--win), transparent);
+        "
         :class="{ 'opacity-100': showRightFade }"
       />
     </div>

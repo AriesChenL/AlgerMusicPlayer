@@ -7,10 +7,10 @@
       >
         <!-- 弹窗内容 -->
         <div
-          class="w-full max-w-lg bg-white dark:bg-gray-900 rounded-t-3xl overflow-hidden animate-slide-up"
+          class="w-full max-w-lg bg-white dark:bg-dark-100 rounded-t-3xl overflow-hidden animate-slide-up"
         >
           <!-- 顶部装饰条 -->
-          <div class="h-1 bg-gradient-to-r from-green-400 via-green-500 to-emerald-600"></div>
+          <div class="h-1 bg-gradient-to-r from-primary-400 via-primary-500 to-emerald-600"></div>
 
           <!-- 关闭条 -->
           <div class="flex justify-center pt-3 pb-2">
@@ -22,7 +22,7 @@
             <div class="flex items-center gap-4">
               <!-- 应用图标 -->
               <div
-                class="w-20 h-20 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ring-2 ring-green-500/20"
+                class="w-20 h-20 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 ring-2 ring-primary-500/20"
               >
                 <img src="@/assets/logo.png" alt="App Icon" class="w-full h-full object-cover" />
               </div>
@@ -31,7 +31,7 @@
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2 mb-2">
                   <span
-                    class="px-3 py-1 text-xs font-medium text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-full"
+                    class="px-3 py-1 text-xs font-medium text-white bg-gradient-to-r from-primary-500 to-emerald-600 rounded-full"
                   >
                     {{ t('comp.update.title') }}
                   </span>
@@ -69,7 +69,7 @@
             </button>
             <button
               @click="handleUpdate"
-              class="flex-1 py-4 px-4 rounded-2xl text-base font-medium text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-green-500/25"
+              class="flex-1 py-4 px-4 rounded-2xl text-base font-medium text-white bg-gradient-to-r from-primary-500 to-emerald-600 hover:from-primary-600 hover:to-emerald-700 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary-500/25"
             >
               <span class="flex items-center justify-center gap-2">
                 <i class="ri-download-2-line text-lg"></i>
@@ -275,6 +275,6 @@ onMounted(() => {
 }
 
 :deep(a) {
-  color: #22c55e;
+  color: #e08a3c;
 }
 </style>

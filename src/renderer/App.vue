@@ -37,34 +37,43 @@ import { initLxMusicRunner } from './services/LxMusicSourceRunner';
 import { isMobile } from './utils';
 import { useAppShortcuts } from './utils/appShortcuts';
 
-// naive-ui 主题覆盖：统一品牌绿与暗色面板，避免组件使用 naive 默认绿
-const PRIMARY = '#22c55e';
-const PRIMARY_HOVER = '#34d27b';
-const PRIMARY_PRESSED = '#16a34a';
+// naive-ui 主题覆盖：暖色琥珀强调色与暖色暗色面板（设计稿配色）
+const PRIMARY = '#e08a3c';
+const PRIMARY_HOVER = '#f4a85e';
+const PRIMARY_PRESSED = '#c5702a';
 
 const commonThemeOverrides: GlobalThemeOverrides['common'] = {
   primaryColor: PRIMARY,
   primaryColorHover: PRIMARY_HOVER,
   primaryColorPressed: PRIMARY_PRESSED,
   primaryColorSuppl: PRIMARY_HOVER,
-  borderRadius: '8px',
-  borderRadiusSmall: '6px'
+  borderRadius: '12px',
+  borderRadiusSmall: '9px'
 };
 
 const lightThemeOverrides: GlobalThemeOverrides = {
-  common: { ...commonThemeOverrides }
+  common: {
+    ...commonThemeOverrides,
+    bodyColor: '#fbf6ef',
+    cardColor: '#ffffff',
+    modalColor: '#ffffff',
+    popoverColor: '#ffffff',
+    tableColor: '#ffffff',
+    inputColor: '#f7f0e7',
+    borderColor: 'rgba(80,50,20,.15)'
+  }
 };
 
 const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
     ...commonThemeOverrides,
-    bodyColor: '#0a0b0d',
-    cardColor: '#15161a',
-    modalColor: '#15161a',
-    popoverColor: '#2a2c31',
-    tableColor: '#15161a',
-    inputColor: '#15161a',
-    borderColor: '#2a2c31'
+    bodyColor: '#1b1612',
+    cardColor: '#241e19',
+    modalColor: '#241e19',
+    popoverColor: '#2b241e',
+    tableColor: '#241e19',
+    inputColor: '#2b241e',
+    borderColor: 'rgba(255,255,255,.11)'
   }
 };
 

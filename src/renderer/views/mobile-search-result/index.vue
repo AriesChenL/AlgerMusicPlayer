@@ -303,7 +303,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .mobile-search-result {
   @apply fixed inset-0;
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
   @apply flex flex-col;
 }
 
@@ -355,7 +355,7 @@ onMounted(() => {
   @apply transition-colors duration-200;
 
   &.active {
-    @apply bg-green-500 text-white;
+    @apply bg-primary-500 text-white;
   }
 }
 

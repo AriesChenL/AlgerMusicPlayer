@@ -1,10 +1,12 @@
 <template>
-  <div class="h-full w-full bg-white transition-colors duration-500 dark:bg-black">
+  <div class="h-full w-full bg-white transition-colors duration-500 dark:bg-dark">
     <n-scrollbar ref="scrollbarRef" class="h-full" :size="100" @scroll="handleScroll">
       <div class="w-full pb-32">
         <!-- Page Header (scrolls away) -->
         <div ref="headerRef" class="page-padding pt-6 pb-2">
-          <h1 class="mb-2 text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl dark:text-white">
+          <h1
+            class="mb-2 text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl dark:text-white"
+          >
             {{ title }}
           </h1>
           <p v-if="description" class="text-neutral-500 dark:text-neutral-400">
@@ -74,6 +76,7 @@ const handleScroll = (e: any) => {
   emit('scroll', e);
 };
 
+// eslint-disable-next-line no-undef -- ScrollToOptions 为 DOM 内置类型，TS 已校验
 const scrollTo = (options: ScrollToOptions) => {
   scrollbarRef.value?.scrollTo(options);
 };

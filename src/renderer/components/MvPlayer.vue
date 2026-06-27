@@ -64,7 +64,7 @@
           quaternary
           circle
           size="large"
-          class="!text-white hover:!text-green-500 scale-150"
+          class="!text-white hover:!text-primary-500 scale-150"
         >
           <template #icon>
             <n-icon size="48"><i class="ri-play-circle-line"></i></n-icon>
@@ -156,7 +156,7 @@
               <n-button
                 quaternary
                 circle
-                class="!text-white hover:!text-green-400"
+                class="!text-white hover:!text-primary-400"
                 @click="handlePrev"
                 :disabled="!props.currentMv"
               >
@@ -168,7 +168,7 @@
               <n-button
                 quaternary
                 circle
-                class="!text-white hover:!text-green-400"
+                class="!text-white hover:!text-primary-400"
                 @click="togglePlay"
               >
                 <template #icon>
@@ -181,7 +181,7 @@
               <n-button
                 quaternary
                 circle
-                class="!text-white hover:!text-green-400"
+                class="!text-white hover:!text-primary-400"
                 @click="handleNext"
                 :disabled="!props.currentMv"
               >
@@ -204,7 +204,7 @@
                 <n-button
                   quaternary
                   circle
-                  class="!text-white hover:!text-green-400"
+                  class="!text-white hover:!text-primary-400"
                   @click="togglePlayMode"
                 >
                   <template #icon>
@@ -224,7 +224,7 @@
               <n-button
                 quaternary
                 circle
-                class="!text-white hover:!text-green-400"
+                class="!text-white hover:!text-primary-400"
                 @click="toggleMute"
               >
                 <template #icon>
@@ -250,7 +250,7 @@
             <n-button
               quaternary
               circle
-              class="!text-white hover:!text-green-400"
+              class="!text-white hover:!text-primary-400"
               @click="toggleFullscreen"
             >
               <template #icon>
@@ -276,7 +276,7 @@
           v-if="showModeHint"
           class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/70 backdrop-blur px-6 py-4 rounded-xl flex flex-col items-center gap-2 pointer-events-none z-50"
         >
-          <n-icon size="32" class="text-green-500">
+          <n-icon size="32" class="text-primary-500">
             <i :class="playMode === 'single' ? 'ri-repeat-one-line' : 'ri-play-list-line'"></i>
           </n-icon>
           <span class="text-white text-sm font-medium">

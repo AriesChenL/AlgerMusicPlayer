@@ -1,5 +1,5 @@
 <template>
-  <div class="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-black z-10">
+  <div class="border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-dark z-10">
     <n-scrollbar ref="scrollbarRef" x-scrollable>
       <div
         class="flex items-center py-4 page-padding"

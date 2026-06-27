@@ -37,7 +37,11 @@
     <template #content>
       <div class="song-item-content">
         <div class="song-item-content-title">
-          <n-ellipsis class="text-ellipsis" line-clamp="1" :class="{ 'text-green-500': isPlaying }">
+          <n-ellipsis
+            class="text-ellipsis"
+            line-clamp="1"
+            :class="{ 'text-primary-500': isPlaying }"
+          >
             {{ item.name }}
           </n-ellipsis>
         </div>
@@ -45,7 +49,7 @@
           <n-ellipsis class="text-ellipsis" line-clamp="1">
             <template v-for="(artist, index) in artists" :key="index">
               <span
-                class="cursor-pointer hover:text-green-500"
+                class="cursor-pointer hover:text-primary-500"
                 @click.stop="onArtistClick(artist.id)"
                 >{{ artist.name }}</span
               >
@@ -68,7 +72,7 @@
         </div>
         <div
           class="song-item-operating-play bg-gray-300 dark:bg-gray-800 animate__animated"
-          :class="{ 'bg-green-600': isPlaying, animate__flipInY: playLoading }"
+          :class="{ 'bg-primary-600': isPlaying, animate__flipInY: playLoading }"
           @click="onPlayMusic"
         >
           <i v-if="isPlaying && play" class="iconfont icon-stop"></i>
@@ -219,8 +223,8 @@ const onPlayMusic = () => {
       color: rgb(17 24 39); /* text-gray-900 */
 
       &:hover,
-      &.bg-green-600 {
-        background-color: rgb(34 197 94); /* bg-green-500 = #22c55e */
+      &.bg-primary-600 {
+        background-color: rgb(34 197 94); /* bg-primary-500 = #e08a3c */
         border-color: rgb(34 197 94);
         color: white;
       }
@@ -246,7 +250,7 @@ const onPlayMusic = () => {
 
   .song-item-operating {
     border-color: rgb(55 65 81); /* dark:border-gray-700 */
-    background-color: black; /* dark:bg-black */
+    background-color: black; /* dark:bg-dark */
 
     &-like .icon-likefill {
       color: rgb(156 163 175); /* dark:text-gray-400 */

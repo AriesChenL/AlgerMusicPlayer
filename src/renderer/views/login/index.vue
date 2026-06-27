@@ -199,7 +199,7 @@ const handleLoginError = (error: string) => {
 <style lang="scss" scoped>
 .login-page {
   @apply flex flex-col items-center justify-center;
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
 }
 
 .login-title {
@@ -241,7 +241,7 @@ const handleLoginError = (error: string) => {
         }
 
         &.active {
-          @apply bg-green-600 text-white font-medium;
+          @apply bg-primary-600 text-white font-medium;
           transform: translateY(-1px);
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -274,7 +274,7 @@ const handleLoginError = (error: string) => {
         transition: all 0.3s ease;
 
         &:focus {
-          @apply border-green-500;
+          @apply border-primary-500;
           transform: translateY(-1px);
         }
       }
@@ -284,7 +284,7 @@ const handleLoginError = (error: string) => {
       width: 250px;
       height: 40px;
       @apply mt-10 text-white rounded-xl;
-      @apply bg-green-600 hover:bg-green-700 transition-all duration-300;
+      @apply bg-primary-600 hover:bg-primary-700 transition-all duration-300;
       transform: translateY(0);
 
       &:hover {

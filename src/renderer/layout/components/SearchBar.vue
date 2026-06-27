@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-2 pb-4 pr-4 pl-1">
+  <div class="flex items-center gap-2 pt-6 pb-4 page-padding">
     <!-- ── LEFT: Tabs（搜索展开时隐藏）─────────────── -->
     <transition name="tab-slide">
       <div
@@ -507,14 +507,11 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   height: 34px;
-  background: #f3f4f6;
+  background: var(--chip);
   border-radius: 9999px;
   padding: 3px;
   gap: 0;
   box-sizing: border-box;
-}
-.dark .tabs-track {
-  background: #1f2937;
 }
 
 .tab-slider-bg {
@@ -523,8 +520,8 @@ onMounted(() => {
   left: 0;
   height: calc(100% - 6px);
   border-radius: 9999px;
-  background: #22c55e;
-  box-shadow: 0 1px 6px rgba(34, 197, 94, 0.35);
+  background: var(--accent);
+  box-shadow: 0 1px 6px var(--accentLine);
   transition:
     transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1),
     width 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
@@ -572,7 +569,7 @@ onMounted(() => {
   width: 32px;
   height: 32px;
   border-radius: 9999px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--line2);
   background: transparent;
   color: #6b7280;
   font-size: 16px;
@@ -580,12 +577,12 @@ onMounted(() => {
   transition: all 0.15s;
 }
 .dark .back-btn {
-  border-color: #374151;
+  border-color: var(--line2);
   color: #9ca3af;
 }
 .back-btn:hover {
-  color: #22c55e;
-  border-color: #22c55e;
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* ── Search wrap ─────────────────────────────────────── */
@@ -610,25 +607,17 @@ onMounted(() => {
   height: 34px;
   padding: 0 10px;
   border-radius: 9999px;
-  border: 1.5px solid #e5e7eb;
-  background: #f9fafb;
+  border: 1.5px solid var(--line);
+  background: var(--panel2);
   transition:
     border-color 0.2s,
     background 0.2s,
     box-shadow 0.2s;
 }
-.dark .search-inner {
-  border-color: #374151;
-  background: #111827;
-}
 .search-inner--focus {
-  border-color: #22c55e;
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-}
-.dark .search-inner--focus {
-  background: #0a0a0a;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+  border-color: var(--accentLine);
+  background: var(--elev);
+  box-shadow: 0 0 0 3px var(--accentSoft);
 }
 
 .search-icon-glyph {
@@ -638,7 +627,7 @@ onMounted(() => {
   transition: color 0.2s;
 }
 .search-inner--focus .search-icon-glyph {
-  color: #22c55e;
+  color: var(--accent);
 }
 
 .search-input {
@@ -679,12 +668,12 @@ onMounted(() => {
   color: #9ca3af;
 }
 .type-chip:hover {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--accentSoft);
+  color: var(--accent);
 }
 .dark .type-chip:hover {
-  background: rgba(34, 197, 94, 0.1);
-  color: #22c55e;
+  background: var(--accentSoft);
+  color: var(--accent);
 }
 
 /* ── Action buttons ──────────────────────────────────── */
@@ -695,7 +684,7 @@ onMounted(() => {
   width: 32px;
   height: 32px;
   border-radius: 9999px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--line2);
   background: transparent;
   color: #6b7280;
   font-size: 15px;
@@ -703,18 +692,18 @@ onMounted(() => {
   transition: all 0.15s;
 }
 .dark .action-btn {
-  border-color: #374151;
+  border-color: var(--line2);
   color: #9ca3af;
 }
 .action-btn:hover {
-  color: #22c55e;
-  border-color: #bbf7d0;
-  background: #f0fdf4;
+  color: var(--accent);
+  border-color: var(--accentLine);
+  background: var(--accentSoft);
 }
 .dark .action-btn:hover {
-  border-color: #166534;
-  background: rgba(34, 197, 94, 0.08);
-  color: #22c55e;
+  border-color: var(--accentLine);
+  background: var(--accentSoft);
+  color: var(--accent);
 }
 .action-btn.intelligence-active {
   color: #ec4899;
@@ -736,7 +725,7 @@ onMounted(() => {
   height: 32px;
   padding: 2px;
   border-radius: 9999px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--line2);
   background: transparent;
   cursor: pointer;
   transition:
@@ -744,11 +733,11 @@ onMounted(() => {
     box-shadow 0.15s;
 }
 .dark .user-btn {
-  border-color: #374151;
+  border-color: var(--line2);
 }
 .user-btn:hover {
-  border-color: #22c55e;
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accentSoft);
 }
 
 .login-label {
@@ -823,7 +812,7 @@ onMounted(() => {
   gap: 7px;
   padding: 6px 14px;
   font-size: 13px;
-  color: #374151;
+  color: var(--line2);
   cursor: pointer;
   transition: background 0.12s;
 }
@@ -865,8 +854,8 @@ onMounted(() => {
   transition: all 0.12s;
 }
 .zoom-btn:hover {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--accentSoft);
+  color: var(--accent);
 }
 .zoom-val {
   font-size: 11px;
@@ -879,8 +868,8 @@ onMounted(() => {
   transition: all 0.12s;
 }
 .zoom-val--100 {
-  background: #dcfce7;
-  color: #16a34a;
+  background: var(--accentSoft);
+  color: var(--accent);
 }
 .ver-chip {
   font-size: 11px;
@@ -909,7 +898,7 @@ onMounted(() => {
   gap: 8px;
   padding: 8px 14px;
   font-size: 13px;
-  color: #374151;
+  color: var(--line2);
   cursor: pointer;
   transition: background 0.1s;
 }
@@ -918,13 +907,13 @@ onMounted(() => {
 }
 .suggest-row:hover,
 .suggest-row--hi {
-  background: #f0fdf4;
-  color: #16a34a;
+  background: var(--accentSoft);
+  color: var(--accent);
 }
 .dark .suggest-row:hover,
 .dark .suggest-row--hi {
   background: rgba(34, 197, 94, 0.06);
-  color: #22c55e;
+  color: var(--accent);
 }
 .suggest-icon {
   font-size: 13px;

@@ -42,7 +42,7 @@
           class="flex items-center gap-1 px-2 py-1 rounded-full bg-black/30 backdrop-blur-sm text-xs text-white/90"
           @click="showPlayerSettings = true"
         >
-          <i class="ri-timer-line text-green-400"></i>
+          <i class="ri-timer-line text-primary-400"></i>
           <span class="font-medium tabular-nums">{{ sleepTimerDisplayText }}</span>
         </div>
         <div @click="showPlayerSettings = true">
@@ -1552,7 +1552,7 @@ const getWordStyle = (lineIndex: number, _wordIndex: number, word: any) => {
             color: var(--text-color-primary);
 
             &.intelligence-active {
-              @apply text-green-500;
+              @apply text-primary-500;
             }
           }
 

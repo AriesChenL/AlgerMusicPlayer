@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!-- menu -->
+    <!-- 侧边图标导航栏（设计稿 sidebar rail） -->
     <div class="app-menu" :class="{ 'app-menu-expanded': settingsStore.setData.isMenuExpanded }">
       <div class="app-menu-header">
         <div class="app-menu-logo" @click="toggleMenu">
-          <img :src="icon" class="w-9 h-9" alt="logo" />
+          <img :src="icon" class="app-menu-logo-img" alt="logo" />
         </div>
       </div>
       <div class="app-menu-list">
@@ -12,26 +12,37 @@
           <n-tooltip
             :delay="200"
             :disabled="settingsStore.setData.isMenuExpanded || isMobile"
-            placement="bottom"
+            placement="right"
           >
             <template #trigger>
-              <router-link class="app-menu-item-link" :to="item.path">
-                <i
-                  class="iconfont app-menu-item-icon"
-                  :style="iconStyle(index)"
-                  :class="item.meta.icon"
-                ></i>
-                <span
-                  v-if="settingsStore.setData.isMenuExpanded"
-                  class="app-menu-item-text ml-3"
-                  :class="isChecked(index) ? 'text-green-500' : ''"
-                  >{{ t(item.meta.title) }}</span
-                >
+              <router-link
+                class="app-menu-item-link"
+                :class="{ active: isChecked(index) }"
+                :to="item.path"
+              >
+                <i class="iconfont app-menu-item-icon" :class="item.meta.icon"></i>
+                <span v-if="settingsStore.setData.isMenuExpanded" class="app-menu-item-text ml-3">{{
+                  t(item.meta.title)
+                }}</span>
               </router-link>
             </template>
             <div v-if="!settingsStore.setData.isMenuExpanded">{{ t(item.meta.title) }}</div>
           </n-tooltip>
         </div>
+      </div>
+      <!-- 底部下载入口 -->
+      <div v-if="!isMobile" class="app-menu-footer">
+        <n-tooltip :delay="200" :disabled="settingsStore.setData.isMenuExpanded" placement="right">
+          <template #trigger>
+            <router-link class="app-menu-item-link app-menu-download" to="/downloads">
+              <i class="iconfont ri-download-2-line app-menu-item-icon"></i>
+              <span v-if="settingsStore.setData.isMenuExpanded" class="app-menu-item-text ml-3">{{
+                t('common.download')
+              }}</span>
+            </router-link>
+          </template>
+          <div v-if="!settingsStore.setData.isMenuExpanded">{{ t('common.download') }}</div>
+        </n-tooltip>
       </div>
     </div>
   </div>
@@ -57,7 +68,7 @@ const props = defineProps({
   },
   selectColor: {
     type: String,
-    default: '#22c55e'
+    default: '#e08a3c'
   },
   menus: {
     type: Array as any,
@@ -81,14 +92,6 @@ const isChecked = (index: number) => {
   return path.value === props.menus[index].path;
 };
 
-const iconStyle = (index: number) => {
-  const style = {
-    fontSize: props.size,
-    color: isChecked(index) ? props.selectColor : props.color
-  };
-  return style;
-};
-
 const toggleMenu = () => {
   settingsStore.setSetData({
     isMenuExpanded: !settingsStore.setData.isMenuExpanded
@@ -97,108 +100,169 @@ const toggleMenu = () => {
 </script>
 
 <style lang="scss" scoped>
+/* ===== 桌面端侧边图标导航栏（设计稿 sidebar rail，78px） ===== */
 .app-menu {
-  @apply flex-col items-center justify-center transition-all duration-300 w-[100px] px-1;
+  width: 78px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 0;
+  border-right: 1px solid var(--line);
+  background: var(--panel);
+  transition: width 0.3s ease;
+}
+
+.app-menu-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-menu-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: linear-gradient(140deg, var(--accent2), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px -4px var(--accentLine);
+  overflow: hidden;
+}
+
+.app-menu-logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 .app-menu-list {
-  max-height: calc(100vh - 120px); /* 为header预留空间，防止菜单项被遮挡 */
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 22px;
   overflow-y: auto;
   overflow-x: hidden;
-  /* 自定义滚动条样式 - 默认隐藏，悬停时显示 */
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-  padding-bottom: 20px;
-  transition: scrollbar-color 0.3s ease;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 2px;
-    transition: background-color 0.3s ease;
-  }
-
-  /* 悬停时显示滚动条 */
-  &:hover {
-    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
-
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(156, 163, 175, 0.5);
-
-      &:hover {
-        background-color: rgba(156, 163, 175, 0.7);
-      }
-    }
+    width: 0;
   }
 }
 
-.app-menu-expanded {
-  @apply w-[160px];
-
-  .app-menu-item {
-    @apply hover:bg-gray-100 dark:hover:bg-gray-800 rounded mr-4;
-  }
+.app-menu-footer {
+  flex: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
 }
 
-.app-menu-item-link,
-.app-menu-header {
-  @apply flex items-center w-[200px] overflow-hidden ml-2 px-5;
-}
-
-.app-menu-header {
-  @apply ml-1;
+.app-menu-item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .app-menu-item-link {
-  @apply mb-6 mt-6;
-}
-
-.app-menu-item-icon {
-  @apply transition-all duration-200 text-gray-500 dark:text-gray-400;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: var(--text3);
+  transition: all 0.18s ease;
 
   &:hover {
-    @apply text-green-500 scale-105 !important;
+    background: var(--elev);
+    color: var(--text);
+  }
+
+  &.active {
+    background: var(--accentSoft);
+    color: var(--accent);
   }
 }
 
+.app-menu-item-icon {
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* ===== 展开态（保留原有功能：显示文字标签） ===== */
+.app-menu-expanded {
+  width: 184px;
+  align-items: stretch;
+  padding-left: 14px;
+  padding-right: 14px;
+
+  .app-menu-header {
+    justify-content: flex-start;
+    padding-left: 4px;
+  }
+
+  .app-menu-item {
+    justify-content: stretch;
+  }
+
+  .app-menu-item-link {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 14px;
+  }
+
+  .app-menu-item-text {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+}
+
+/* ===== 移动端底部横向导航 ===== */
 .mobile {
   .app-menu {
     max-width: 100%;
     width: 100vw;
+    height: auto;
+    flex-direction: row;
     position: relative;
     bottom: 0;
     left: 0;
     z-index: 99999;
-    @apply bg-light dark:bg-black border-none border-gray-200 dark:border-gray-700;
+    padding: 6px 0;
+    border-right: none;
+    border-top: 1px solid var(--line);
+    background: var(--panel);
 
-    &-header {
+    &-header,
+    &-footer {
       display: none;
     }
 
     &-list {
-      @apply flex justify-between px-4;
-      max-height: none !important; /* 移动端不限制高度 */
-      overflow: visible !important; /* 移动端不需要滚动 */
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0;
+      padding: 0 16px;
+      gap: 0;
+      max-height: none !important;
+      overflow: visible !important;
     }
 
     &-item {
-      &-link {
-        @apply my-2 w-auto px-2;
-        width: auto !important;
-        margin-top: 8px;
-        margin-bottom: 8px;
-      }
+      width: auto;
     }
 
     &-expanded {
-      @apply w-full;
+      width: 100%;
     }
   }
 }

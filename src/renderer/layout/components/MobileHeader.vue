@@ -67,7 +67,7 @@ const openSettings = () => {
 <style lang="scss" scoped>
 .mobile-header {
   @apply flex items-center justify-between px-4 py-3;
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
   @apply border-b border-gray-100 dark:border-gray-800;
   min-height: 56px;
 
@@ -85,7 +85,7 @@ const openSettings = () => {
   @apply flex items-center;
 
   .logo-text {
-    @apply text-lg font-bold text-green-500;
+    @apply text-lg font-bold text-primary-500;
   }
 }
 
