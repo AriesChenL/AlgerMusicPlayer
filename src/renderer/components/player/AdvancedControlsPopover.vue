@@ -215,7 +215,7 @@ const selectSpeed = (speed: number) => {
 
 <style lang="scss" scoped>
 .sleep-timer-countdown {
-  @apply fixed top-0 left-1/2 transform -translate-x-1/2 py-1 px-3 rounded-b-lg bg-green-500 text-white text-sm flex items-center;
+  @apply fixed top-0 left-1/2 transform -translate-x-1/2 py-1 px-3 rounded-b-lg bg-primary-500 text-white text-sm flex items-center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   z-index: 9998;
   min-width: 80px;
@@ -245,7 +245,7 @@ const selectSpeed = (speed: number) => {
 
   .iconfont {
     @apply text-2xl transition;
-    @apply hover:text-green-500;
+    @apply hover:text-primary-500;
   }
 
   .active-indicator {
@@ -253,7 +253,7 @@ const selectSpeed = (speed: number) => {
 
     .timer-badge,
     .speed-badge {
-      @apply flex items-center justify-center text-xs bg-green-500 text-white rounded-full;
+      @apply flex items-center justify-center text-xs bg-primary-500 text-white rounded-full;
       height: 16px;
       min-width: 16px;
       padding: 0 3px;
@@ -300,20 +300,20 @@ const selectSpeed = (speed: number) => {
   .speed-option {
     @apply py-2 px-4 rounded-full cursor-pointer transition-all;
     @apply bg-gray-100 dark:bg-gray-800;
-    @apply hover:bg-green-100 dark:hover:bg-green-900;
+    @apply hover:bg-primary-100 dark:hover:bg-primary-900;
   }
   .speed-option.active {
-    @apply bg-green-500 text-white;
+    @apply bg-primary-500 text-white;
   }
 }
 
 .active-option-mark {
-  @apply ml-2 text-xs bg-green-500 text-white py-0.5 px-1.5 rounded-full;
+  @apply ml-2 text-xs bg-primary-500 text-white py-0.5 px-1.5 rounded-full;
   font-weight: 500;
 }
 
 .modal-close {
-  @apply absolute top-4 right-4 cursor-pointer hover:text-green-500;
+  @apply absolute top-4 right-4 cursor-pointer hover:text-primary-500;
   i {
     @apply text-2xl;
   }

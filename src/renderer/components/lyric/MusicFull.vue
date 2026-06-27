@@ -76,7 +76,7 @@
                 <span
                   v-for="(item, index) in artistList"
                   :key="index"
-                  class="cursor-pointer hover:text-green-500"
+                  class="cursor-pointer hover:text-primary-500"
                   @click="handleArtistClick(item.id)"
                 >
                   {{ item.name }}
@@ -121,7 +121,7 @@
                   <span
                     v-for="(item, index) in artistList"
                     :key="index"
-                    class="cursor-pointer hover:text-green-500"
+                    class="cursor-pointer hover:text-primary-500"
                     @click="handleArtistClick(item.id)"
                   >
                     {{ item.name }}
@@ -140,7 +140,8 @@
                 class="music-lrc-text"
                 :class="{
                   'now-text': index === nowIndex,
-                  'hover-text': item.text && item.startTime !== -1
+                  'hover-text': item.text && item.startTime !== -1,
+                  'empty-line': !item.text
                 }"
                 @click="item.startTime !== -1 ? setAudioTime(index) : null"
               >
@@ -406,7 +407,7 @@ watch(
 const { getLrcStyle: originalLrcStyle } = useLyricProgress();
 
 const getLrcStyle = (index: number) => {
-  const colors = textColors.value || getTextColors();
+  const colors = { ...(textColors.value || getTextColors()), active: '#e08a3c' };
   const originalStyle = originalLrcStyle(index);
 
   if (index === nowIndex.value) {
@@ -437,7 +438,7 @@ const getLrcStyle = (index: number) => {
 
 // 逐字歌词样式函数
 const getWordStyle = (lineIndex: number, _wordIndex: number, word: any) => {
-  const colors = textColors.value || getTextColors();
+  const colors = { ...(textColors.value || getTextColors()), active: '#e08a3c' };
   // 如果不是当前行，返回普通样式
   if (lineIndex !== nowIndex.value) {
     return {
@@ -732,8 +733,9 @@ defineExpose({
     }
 
     .img-container {
-      @apply relative w-[45vh] mb-8 aspect-square;
-      max-width: 100%;
+      /* 对齐设计稿封面尺寸（约 330px），随窗口缩放但设上限 */
+      @apply relative w-[38vh] mb-8 aspect-square;
+      max-width: 340px;
     }
 
     .music-info {
@@ -779,18 +781,19 @@ defineExpose({
 
     .music-lrc {
       @apply w-full h-full bg-transparent;
+      /* 上下渐隐遮罩：让歌词在顶/底边界平滑淡出，不顶标题栏与底部按钮（对齐设计稿） */
       mask-image: linear-gradient(
         to bottom,
         transparent 0%,
-        black 15%,
-        black 85%,
+        black 22%,
+        black 78%,
         transparent 100%
       );
       -webkit-mask-image: linear-gradient(
         to bottom,
         transparent 0%,
-        black 15%,
-        black 85%,
+        black 22%,
+        black 78%,
         transparent 100%
       );
 
@@ -829,6 +832,16 @@ defineExpose({
       &.now-text {
         opacity: 1;
         transform: scale(1.05);
+      }
+
+      /* 空白歌词行：压缩高度，避免行间出现不均匀的大空隙 */
+      &.empty-line {
+        @apply py-1;
+        font-size: 0 !important;
+        line-height: 0.4 !important;
+        min-height: 0;
+        opacity: 0;
+        pointer-events: none;
       }
 
       &.no-scroll-tip {

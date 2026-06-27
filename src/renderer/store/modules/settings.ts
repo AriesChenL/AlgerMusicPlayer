@@ -7,14 +7,18 @@ import homeRouter from '@/router/home';
 import { useMenuStore } from '@/store/modules/menu';
 import { isElectron } from '@/utils';
 import {
+  type AccentType,
+  applyAccent,
+  applyRadius,
   applyTheme,
   getCurrentTheme,
   getSystemTheme,
+  type RadiusType,
   ThemeType,
   watchSystemTheme
 } from '@/utils/theme';
 
-import { type AppUpdateState,createDefaultAppUpdateState } from '../../../shared/appUpdate';
+import { type AppUpdateState, createDefaultAppUpdateState } from '../../../shared/appUpdate';
 
 export const useSettingsStore = defineStore('settings', () => {
   const theme = ref<ThemeType>(getCurrentTheme());
@@ -112,6 +116,17 @@ export const useSettingsStore = defineStore('settings', () => {
     }
   };
 
+  // 暖色设计令牌：强调色与圆角风格
+  const setAccent = (accent: AccentType) => {
+    setSetData({ themeAccent: accent });
+    applyAccent(accent);
+  };
+
+  const setRadius = (radius: RadiusType) => {
+    setSetData({ themeRadius: radius });
+    applyRadius(radius);
+  };
+
   const setAutoTheme = (auto: boolean) => {
     setSetData({ autoTheme: auto });
 
@@ -200,6 +215,9 @@ export const useSettingsStore = defineStore('settings', () => {
       theme.value = manualTheme;
       applyTheme(manualTheme);
     }
+    // 应用暖色设计令牌：强调色与圆角
+    applyAccent((setData.value.themeAccent as AccentType) || 'orange');
+    applyRadius((setData.value.themeRadius as RadiusType) || 'default');
   };
 
   const initializeSystemFonts = async () => {
@@ -277,6 +295,8 @@ export const useSettingsStore = defineStore('settings', () => {
     showDownloadDrawer,
     setSetData,
     toggleTheme,
+    setAccent,
+    setRadius,
     setAutoTheme,
     setMiniMode,
     setShowUpdateModal,

@@ -31,7 +31,7 @@
       <div
         v-for="(content, index) in contentList"
         :key="content.id"
-        class="content-item animate-item group relative flex flex-col cursor-pointer overflow-hidden rounded-2xl md:rounded-3xl bg-neutral-50 dark:bg-neutral-900"
+        class="content-item animate-item group relative flex flex-col cursor-pointer overflow-hidden rounded-2xl md:rounded-3xl bg-neutral-50 dark:bg-dark-100"
         :style="{ animationDelay: calculateAnimationDelay(index, 0.1) }"
         @click="handleContentClick(content)"
       >

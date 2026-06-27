@@ -30,6 +30,47 @@
     </setting-item>
 
     <setting-item
+      :title="t('settings.basic.themeAccent')"
+      :description="t('settings.basic.themeAccentDesc')"
+    >
+      <template #action>
+        <div class="accent-picker">
+          <button
+            v-for="opt in accentOptions"
+            :key="opt.value"
+            class="accent-swatch"
+            :class="{ active: currentAccent === opt.value }"
+            :style="{ background: opt.color }"
+            :title="opt.label"
+            @click="setAccent(opt.value)"
+          >
+            <i v-if="currentAccent === opt.value" class="ri-check-line"></i>
+          </button>
+        </div>
+      </template>
+    </setting-item>
+
+    <setting-item
+      :title="t('settings.basic.themeRadius')"
+      :description="t('settings.basic.themeRadiusDesc')"
+    >
+      <template #action>
+        <div class="radius-picker">
+          <button
+            v-for="opt in radiusOptions"
+            :key="opt.value"
+            class="radius-chip"
+            :class="{ active: currentRadius === opt.value }"
+            @click="setRadius(opt.value)"
+          >
+            <span class="radius-demo" :style="{ borderRadius: opt.demo }"></span>
+            {{ opt.label }}
+          </button>
+        </div>
+      </template>
+    </setting-item>
+
+    <setting-item
       :title="t('settings.basic.language')"
       :description="t('settings.basic.languageDesc')"
     >
@@ -97,7 +138,7 @@
             {{ t(`settings.basic.fontPreview.${preview.key}`) }}
           </div>
           <div
-            class="text-lg text-gray-900 dark:text-gray-100 p-3 rounded-xl bg-gray-50 dark:bg-black/20"
+            class="text-lg text-gray-900 dark:text-gray-100 p-3 rounded-xl bg-gray-50 dark:bg-dark/20"
           >
             {{ t(`settings.basic.fontPreview.${preview.key}Text`) }}
           </div>
@@ -202,6 +243,7 @@ import CookieSettingsModal from '@/components/settings/CookieSettingsModal.vue';
 import { useSettingsStore } from '@/store/modules/settings';
 import { useUserStore } from '@/store/modules/user';
 import { isElectron, isMobile } from '@/utils';
+import type { AccentType, RadiusType } from '@/utils/theme';
 
 import { SETTINGS_DATA_KEY, SETTINGS_MESSAGE_KEY } from '../keys';
 import SBtn from '../SBtn.vue';
@@ -231,6 +273,22 @@ const isDarkTheme = computed({
 const handleAutoThemeChange = (value: boolean) => {
   settingsStore.setAutoTheme(value);
 };
+
+// 暖色设计令牌：强调色 / 圆角风格选择器
+const accentOptions = computed(() => [
+  { value: 'orange' as const, label: t('settings.basic.accentOrange'), color: '#e08a3c' },
+  { value: 'amber' as const, label: t('settings.basic.accentAmber'), color: '#e0a23c' },
+  { value: 'terracotta' as const, label: t('settings.basic.accentTerracotta'), color: '#d96a3c' }
+]);
+const radiusOptions = computed(() => [
+  { value: 'default' as const, label: t('settings.basic.radiusDefault'), demo: '7px' },
+  { value: 'round' as const, label: t('settings.basic.radiusRound'), demo: '12px' },
+  { value: 'sharp' as const, label: t('settings.basic.radiusSharp'), demo: '3px' }
+]);
+const currentAccent = computed(() => setData.value.themeAccent || 'orange');
+const currentRadius = computed(() => setData.value.themeRadius || 'default');
+const setAccent = (v: AccentType) => settingsStore.setAccent(v);
+const setRadius = (v: RadiusType) => settingsStore.setRadius(v);
 
 const gpuAccelerationChanged = ref(false);
 
@@ -351,3 +409,72 @@ onUnmounted(() => {
   }
 });
 </script>
+
+<style lang="scss" scoped>
+/* 强调色选择器 */
+.accent-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.accent-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--line2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  transition: all 0.18s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  &:hover {
+    transform: scale(1.08);
+  }
+  &.active {
+    border-color: var(--text);
+    box-shadow:
+      0 0 0 2px var(--win),
+      0 0 0 4px currentColor;
+  }
+}
+
+/* 圆角风格选择器 */
+.radius-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.radius-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--line2);
+  background: var(--chip);
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+
+  &:hover {
+    border-color: var(--accentLine);
+    color: var(--text);
+  }
+  &.active {
+    background: var(--accentSoft);
+    border-color: var(--accentLine);
+    color: var(--accent);
+  }
+}
+.radius-demo {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  display: inline-block;
+}
+</style>

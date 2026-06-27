@@ -5,7 +5,7 @@
       class="flex w-full items-center justify-between gap-2 rounded-[10px] border px-3 py-1.5 text-sm transition-all duration-200 select-none disabled:opacity-50 disabled:cursor-not-allowed"
       :class="
         isOpen
-          ? 'border-primary bg-white dark:bg-neutral-900 ring-2 ring-primary/20'
+          ? 'border-primary bg-white dark:bg-dark-100 ring-2 ring-primary/20'
           : 'border-neutral-200 bg-neutral-50 hover:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600'
       "
       @click="toggle"
@@ -32,7 +32,7 @@
     >
       <div
         v-if="isOpen"
-        class="absolute z-50 mt-1.5 w-full min-w-[160px] overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-lg dark:border-neutral-700 dark:bg-neutral-900"
+        class="absolute z-50 mt-1.5 w-full min-w-[160px] overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-lg dark:border-neutral-700 dark:bg-dark-100"
         :class="dropdownPosition === 'top' ? 'bottom-full mb-1.5 mt-0' : ''"
       >
         <div class="max-h-[240px] overflow-y-auto py-1">

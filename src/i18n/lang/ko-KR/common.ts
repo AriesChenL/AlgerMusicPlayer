@@ -5,6 +5,7 @@ export default {
   volume: '볼륨',
   settings: '설정',
   search: '검색',
+  download: '다운로드',
   loading: '로딩 중...',
   loadingMore: '더 불러오기...',
   alipay: '알리페이',

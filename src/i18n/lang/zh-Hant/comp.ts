@@ -297,7 +297,9 @@ export default {
   localMusic: '本地音樂',
   pages: {
     toplist: {
-      desc: '最具權威的音樂榜單，發現當下最熱門的音樂'
+      desc: '最具權威的音樂榜單，發現當下最熱門的音樂',
+      official: '官方榜',
+      more: '更多榜單'
     },
     mv: {
       desc: '探索精彩影片內容',

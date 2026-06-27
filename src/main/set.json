@@ -10,6 +10,8 @@
   "realIP": "",
   "noAnimate": false,
   "animationSpeed": 1,
+  "themeAccent": "orange",
+  "themeRadius": "default",
   "author": "Alger",
   "authorUrl": "https://github.com/algerkong",
   "musicApiPort": 30488,

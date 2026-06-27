@@ -19,7 +19,7 @@
           :class="[
             'flex-1 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200',
             activeTab === tab.key
-              ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/30'
+              ? 'bg-primary text-white shadow-lg shadow-primary/30'
               : 'hover:bg-white/5'
           ]"
           :style="activeTab !== tab.key ? 'color: rgba(255, 255, 255, 0.7);' : ''"
@@ -258,7 +258,7 @@
           <button
             v-if="config.gradientColors.colors.length < 5"
             @click="addGradientColor"
-            class="w-full py-2 px-4 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 transition-colors text-sm font-medium flex items-center justify-center gap-2 text-white/90"
+            class="w-full py-2 px-4 rounded-lg bg-primary/20 hover:bg-primary/30 transition-colors text-sm font-medium flex items-center justify-center gap-2 text-white/90"
           >
             <i class="ri-add-line"></i>
             {{ t('settings.lyricSettings.background.addColor') }}
@@ -293,7 +293,7 @@
           />
           <button
             @click="fileInput?.click()"
-            class="w-full py-2 px-4 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 transition-colors text-sm font-medium flex items-center justify-center gap-2 text-white/90"
+            class="w-full py-2 px-4 rounded-lg bg-primary/20 hover:bg-primary/30 transition-colors text-sm font-medium flex items-center justify-center gap-2 text-white/90"
           >
             <i class="ri-image-add-line"></i>
             {{ t('settings.lyricSettings.background.imageUpload') }}
@@ -367,7 +367,7 @@
             v-model="config.customCss"
             :placeholder="t('settings.lyricSettings.background.customCssPlaceholder')"
             rows="4"
-            class="w-full px-3 py-2 bg-black/20 border border-white/10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 font-mono text-white/90"
+            class="w-full px-3 py-2 bg-black/20 border border-white/10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 font-mono text-white/90"
           ></textarea>
           <p class="text-xs text-white/50">
             {{ t('settings.lyricSettings.background.customCssHelp') }}
@@ -542,7 +542,7 @@ defineExpose({
 }
 
 .toggle-switch:checked {
-  background: #10b981;
+  background: #e08a3c;
 }
 
 .toggle-switch:checked::before {
@@ -581,7 +581,7 @@ defineExpose({
   appearance: none;
   width: 16px;
   height: 16px;
-  background: #10b981;
+  background: #e08a3c;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
@@ -590,7 +590,7 @@ defineExpose({
 .slider-emerald::-moz-range-thumb {
   width: 16px;
   height: 16px;
-  background: #10b981;
+  background: #e08a3c;
   border-radius: 50%;
   cursor: pointer;
   border: none;
@@ -674,7 +674,7 @@ defineExpose({
 }
 
 .radio-input:checked {
-  border-color: #10b981;
+  border-color: #e08a3c;
   opacity: 1;
 }
 
@@ -683,7 +683,7 @@ defineExpose({
   position: absolute;
   width: 10px;
   height: 10px;
-  background: #10b981;
+  background: #e08a3c;
   border-radius: 50%;
   left: 2px;
   top: 2px;
@@ -777,7 +777,7 @@ defineExpose({
 }
 
 .select-input:focus {
-  border-color: #10b981;
+  border-color: #e08a3c;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 

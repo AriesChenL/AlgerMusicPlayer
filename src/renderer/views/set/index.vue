@@ -1,8 +1,8 @@
 <template>
-  <div class="h-full w-full bg-white dark:bg-black transition-colors duration-500 flex flex-col">
+  <div class="h-full w-full mr-win transition-colors duration-500 flex flex-col">
     <!-- 顶部导航区 -->
     <div
-      class="flex-shrink-0 border-b border-gray-100 dark:border-gray-800 bg-white dark:bg-black z-10 page-padding pt-6 pb-2"
+      class="flex-shrink-0 border-b border-gray-100 dark:border-gray-800 mr-win z-10 page-padding pt-6 pb-2"
     >
       <h1 class="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-6">
         {{ t('common.settings') }}
@@ -17,7 +17,7 @@
             :class="
               currentSection === section.id
                 ? 'bg-primary text-white shadow-lg shadow-primary/25 scale-105'
-                : 'bg-gray-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white'
+                : 'bg-gray-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-gray-200 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white'
             "
             @click="currentSection = section.id"
           >

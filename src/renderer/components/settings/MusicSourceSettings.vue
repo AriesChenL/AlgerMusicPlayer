@@ -153,7 +153,7 @@
                         v-else
                         v-model="editingName"
                         ref="renameInputRef"
-                        class="w-full px-2 py-0.5 text-sm bg-white dark:bg-black/20 border border-emerald-500 rounded focus:outline-none"
+                        class="w-full px-2 py-0.5 text-sm bg-white dark:bg-dark/20 border border-emerald-500 rounded focus:outline-none"
                         @blur="saveScriptName(api.id)"
                         @keyup.enter="saveScriptName(api.id)"
                       />
@@ -245,7 +245,7 @@
 
               <div
                 v-if="settingsStore.setData.customApiPluginName"
-                class="mt-4 flex items-center gap-2 px-3 py-1.5 bg-green-50 dark:bg-green-500/10 text-green-600 dark:text-green-400 rounded-lg text-xs"
+                class="mt-4 flex items-center gap-2 px-3 py-1.5 bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-lg text-xs"
               >
                 <i class="ri-check-circle-fill"></i>
                 <span

@@ -29,7 +29,7 @@
         <p class="text-xs text-gray-400">
           {{ t('comp.installApp.downloadProblem') }}
           <a
-            class="text-green-500"
+            class="text-primary-500"
             target="_blank"
             href="https://github.com/algerkong/AlgerMusicPlayer/releases"
             >GitHub</a
@@ -117,9 +117,9 @@ const handleInstall = async (): Promise<void> => {
         }
       }
       .install-btn {
-        @apply bg-green-600 border-none;
+        @apply bg-primary-600 border-none;
         &:hover {
-          @apply bg-green-500;
+          @apply bg-primary-500;
         }
       }
     }

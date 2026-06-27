@@ -1,13 +1,10 @@
 <template>
-  <div
-    id="title-bar"
-    class="flex justify-between px-6 py-2 select-none relative text-dark dark:text-white"
-    @mousedown="drag"
-  >
-    <!-- macOS 使用原生交通灯按钮，隐藏自绘标题文字让位 -->
-    <div v-if="!isMac" id="title">Alger Music</div>
-    <div v-else></div>
-    <div id="buttons" class="flex gap-4">
+  <div id="title-bar" class="mr-titlebar" :class="{ 'is-mac': isMac }" @mousedown="drag">
+    <!-- 左侧：标题（macOS 让位给原生交通灯） -->
+    <div v-if="!isMac" id="title" class="mr-titlebar-title">Alger Music</div>
+    <div v-else class="mr-titlebar-spacer"></div>
+    <div class="mr-titlebar-flex"></div>
+    <div id="buttons" class="mr-titlebar-buttons">
       <n-button
         v-if="!isElectron"
         type="primary"
@@ -20,18 +17,18 @@
         下载桌面版
       </n-button>
       <template v-if="isElectron">
-        <!-- 画中画（迷你模式）为应用特有功能，原生交通灯无对应，各平台均保留 -->
-        <div class="text-gray-600 dark:text-gray-400 hover:text-green-500" @click="miniWindow">
+        <!-- 画中画（迷你模式）为应用特有功能，各平台均保留 -->
+        <button class="mr-titlebar-btn" title="迷你模式" @click="miniWindow">
           <i class="iconfont ri-picture-in-picture-line"></i>
-        </div>
+        </button>
         <!-- 最小化 / 关闭：macOS 交由原生交通灯接管，仅非 macOS 显示自绘按钮 -->
         <template v-if="!isMac">
-          <div class="text-gray-600 dark:text-gray-400 hover:text-green-500" @click="minimize">
+          <button class="mr-titlebar-btn" title="最小化" @click="minimize">
             <i class="iconfont icon-minisize"></i>
-          </div>
-          <div class="text-gray-600 dark:text-gray-400 hover:text-green-500" @click="handleClose">
+          </button>
+          <button class="mr-titlebar-btn mr-titlebar-btn-close" title="关闭" @click="handleClose">
             <i class="iconfont icon-close"></i>
-          </div>
+          </button>
         </template>
       </template>
     </div>
@@ -52,7 +49,7 @@
         @click.self="showCloseModal = false"
       >
         <div
-          class="relative w-[360px] transform overflow-hidden rounded-2xl bg-white p-6 shadow-2xl transition-all dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800"
+          class="relative w-[360px] transform overflow-hidden rounded-2xl bg-white p-6 shadow-2xl transition-all dark:bg-dark-100 border border-neutral-200 dark:border-neutral-800"
         >
           <!-- Close Icon -->
           <button
@@ -79,7 +76,7 @@
               class="relative flex h-5 w-5 items-center justify-center transition-colors duration-200"
               :class="
                 rememberChoice
-                  ? 'text-green-500'
+                  ? 'text-primary'
                   : 'text-neutral-400 group-hover:text-neutral-500 dark:text-neutral-500 dark:group-hover:text-neutral-400'
               "
             >
@@ -112,7 +109,7 @@
               {{ t('comp.titleBar.exitApp') }}
             </button>
             <button
-              class="rounded-full bg-green-500 px-6 py-2 text-sm font-medium text-white hover:bg-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 transition-colors shadow-lg shadow-green-500/20"
+              class="rounded-full bg-primary px-6 py-2 text-sm font-medium text-white hover:bg-primary-pressed focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-colors shadow-lg shadow-primary/20"
               @click="handleAction('minimize')"
             >
               {{ t('comp.titleBar.minimizeToTray') }}
@@ -199,12 +196,72 @@ const drag = (event: MouseEvent) => {
 </script>
 
 <style scoped lang="scss">
-#title-bar {
+/* ===== 玻璃标题栏（设计稿 titlebar，46px） ===== */
+.mr-titlebar {
+  height: 46px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  position: relative;
+  background: var(--titlebar);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
   -webkit-app-region: drag;
   z-index: 3000;
+
+  /* macOS 原生交通灯位于左上角，留出空间 */
+  &.is-mac {
+    padding-left: 80px;
+  }
 }
 
-#buttons {
+.mr-titlebar-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text2);
+  letter-spacing: 0.3px;
+}
+
+.mr-titlebar-spacer {
+  width: 1px;
+}
+
+.mr-titlebar-flex {
+  flex: 1;
+}
+
+.mr-titlebar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   -webkit-app-region: no-drag;
+}
+
+.mr-titlebar-btn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text3);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.18s ease;
+  font-size: 17px;
+
+  &:hover {
+    background: var(--elev);
+    color: var(--text);
+  }
+
+  &.mr-titlebar-btn-close:hover {
+    background: #ff5f57;
+    color: #fff;
+  }
 }
 </style>

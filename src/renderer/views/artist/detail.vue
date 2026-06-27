@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="artist-detail-page h-full w-full bg-white dark:bg-neutral-900 transition-colors duration-500"
-  >
+  <div class="artist-detail-page h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar ref="scrollbarRef" class="h-full">
       <div class="artist-detail-content w-full pb-32">
         <!-- Loading State -->
@@ -136,7 +134,7 @@
 
           <!-- Action Bar -->
           <section
-            class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
+            class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-dark-100/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
           >
             <div class="flex items-center justify-between gap-3">
               <!-- Left Actions -->

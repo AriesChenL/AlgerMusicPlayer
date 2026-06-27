@@ -101,7 +101,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  color: 'blue',
+  color: 'amber',
   active: false,
   badge: null,
   aspect: 'square'

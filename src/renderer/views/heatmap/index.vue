@@ -420,7 +420,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .heatmap-page {
   @apply h-full w-full flex flex-col;
-  @apply bg-light dark:bg-black;
+  @apply bg-light dark:bg-dark;
 
   .heatmap-header {
     @apply flex items-center justify-between flex-shrink-0 px-6 py-2;
@@ -431,7 +431,7 @@ onMounted(() => {
       .back-button {
         @apply text-2xl;
         @apply text-gray-700 dark:text-gray-300;
-        @apply hover:text-green-500 dark:hover:text-green-400;
+        @apply hover:text-primary-500 dark:hover:text-primary-400;
         @apply transition-colors;
       }
 
@@ -456,7 +456,7 @@ onMounted(() => {
 
         .stat-value {
           @apply text-2xl font-bold;
-          @apply text-green-500 dark:text-green-400;
+          @apply text-primary-500 dark:text-primary-400;
         }
       }
     }
@@ -515,10 +515,10 @@ onMounted(() => {
             // 绿色主题
             &.color-green {
               .color-block {
-                @apply bg-green-500;
+                @apply bg-primary-500;
               }
               &.active {
-                @apply border-green-500 text-green-600 dark:text-green-400;
+                @apply border-primary-500 text-primary-600 dark:text-primary-400;
               }
             }
 
@@ -587,7 +587,7 @@ onMounted(() => {
           .stat-icon {
             @apply flex items-center justify-center;
             @apply w-12 h-12 rounded-lg;
-            @apply bg-gradient-to-br from-green-400 to-green-600;
+            @apply bg-gradient-to-br from-primary-400 to-primary-600;
             @apply text-white text-2xl;
             @apply shadow-md;
 
@@ -621,10 +621,10 @@ onMounted(() => {
                 &.clickable {
                   @apply cursor-pointer rounded-md px-2 py-1 -mx-2 -my-1;
                   @apply transition-all duration-200;
-                  @apply hover:bg-green-50 dark:hover:bg-green-900/20;
+                  @apply hover:bg-primary-50 dark:hover:bg-primary-900/20;
 
                   .song-name {
-                    @apply hover:text-green-600 dark:hover:text-green-400;
+                    @apply hover:text-primary-600 dark:hover:text-primary-400;
                   }
                 }
 
@@ -648,7 +648,7 @@ onMounted(() => {
               .play-count,
               .time-info {
                 @apply text-sm font-medium;
-                @apply text-green-600 dark:text-green-400;
+                @apply text-primary-600 dark:text-primary-400;
               }
             }
           }
@@ -691,15 +691,15 @@ onMounted(() => {
       &.clickable {
         @apply cursor-pointer rounded px-2 -mx-2;
         @apply transition-all duration-200;
-        @apply hover:bg-green-500/30;
+        @apply hover:bg-primary-500/30;
 
         .song-name {
-          @apply hover:text-green-600;
+          @apply hover:text-primary-600;
         }
       }
 
       .song-rank {
-        @apply font-bold text-green-500;
+        @apply font-bold text-primary-500;
       }
 
       .song-name {
@@ -732,7 +732,7 @@ onMounted(() => {
     @apply transition-all duration-200;
 
     &:hover {
-      @apply ring-2 ring-green-400 ring-opacity-50;
+      @apply ring-2 ring-primary-400 ring-opacity-50;
       @apply transform scale-110;
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-full w-full bg-gray-50 dark:bg-black transition-colors duration-500 overflow-hidden flex flex-col relative"
+    class="h-full w-full bg-gray-50 dark:bg-dark transition-colors duration-500 overflow-hidden flex flex-col relative"
   >
     <!-- 背景装饰 -->
     <div
@@ -62,7 +62,7 @@
           <!-- 左侧：输入区域 -->
           <div class="lg:col-span-2 space-y-6">
             <div
-              class="bg-white dark:bg-neutral-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none overflow-hidden p-1 transition-all duration-300"
+              class="bg-white dark:bg-dark-100 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none overflow-hidden p-1 transition-all duration-300"
             >
               <!-- 链接导入内容 -->
               <div v-if="currentTab === 'link'" class="p-6 space-y-6 animate-fade-in">
@@ -179,7 +179,7 @@
           <div class="space-y-6">
             <!-- 选项卡片 -->
             <div
-              class="bg-white dark:bg-neutral-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none p-6"
+              class="bg-white dark:bg-dark-100 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none p-6"
             >
               <h3 class="font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <i class="ri-settings-4-line text-primary"></i>
@@ -256,7 +256,7 @@
             <!-- 状态反馈 -->
             <div v-if="taskId" class="animate-fade-in-up">
               <div
-                class="bg-white dark:bg-neutral-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none p-6"
+                class="bg-white dark:bg-dark-100 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none p-6"
               >
                 <div class="flex items-center justify-between mb-4">
                   <h3 class="font-bold text-gray-900 dark:text-white flex items-center gap-2">
@@ -274,7 +274,7 @@
                       :class="{
                         'bg-blue-50 text-blue-500':
                           taskStatus === 'processing' || taskStatus === 'pending',
-                        'bg-green-50 text-green-500': taskStatus === 'success',
+                        'bg-primary-50 text-primary-500': taskStatus === 'success',
                         'bg-red-50 text-red-500': taskStatus === 'failed'
                       }"
                     >
@@ -295,7 +295,7 @@
 
                   <div
                     v-if="taskStatus === 'success'"
-                    class="bg-green-50 dark:bg-green-900/10 rounded-xl p-3 text-green-700 dark:text-green-400 text-sm flex justify-between"
+                    class="bg-primary-50 dark:bg-primary-900/10 rounded-xl p-3 text-primary-700 dark:text-primary-400 text-sm flex justify-between"
                   >
                     <span>{{ t('comp.playlist.import.successCount') }}</span>
                     <span class="font-bold">{{ successCount }}</span>

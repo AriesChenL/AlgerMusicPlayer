@@ -302,8 +302,8 @@ const hotPlaylists = ref<any[]>([]);
 const hotArtistsList = ref<any[]>([]);
 const dailyCoverRef = ref<HTMLImageElement | null>(null);
 const fmCoverRef = ref<HTMLImageElement | null>(null);
-const dailyCardBg = ref('linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
-const fmCardBg = ref('linear-gradient(135deg, #e91e63 0%, #c2185b 100%)');
+const dailyCardBg = ref('linear-gradient(160deg, #7a4a2a 0%, #3a2416 100%)');
+const fmCardBg = ref('linear-gradient(160deg, #8a3a2a 0%, #4a2018 100%)');
 
 const isLoggedIn = computed(() => !!userStore.user);
 const dayRecommendSongs = computed(() => recommendStore.dailyRecommendSongs);
@@ -720,7 +720,7 @@ onActivated(() => {
 .eq-bar {
   width: 3px;
   border-radius: 9999px;
-  background-color: #22c55e;
+  background-color: #e08a3c;
   animation: eqPulse 0.8s ease-in-out infinite;
 }
 .eq-bar:nth-child(1) {

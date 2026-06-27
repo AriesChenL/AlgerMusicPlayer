@@ -6,7 +6,7 @@
         class="fixed inset-0 z-[999999] flex items-center justify-center bg-black/60 backdrop-blur-md"
       >
         <div
-          class="w-full max-w-md mx-4 bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-2xl"
+          class="w-full max-w-md mx-4 bg-white dark:bg-dark-100 rounded-3xl overflow-hidden shadow-2xl"
         >
           <div class="h-2 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500"></div>
           <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white px-6 mt-10">
@@ -38,9 +38,9 @@
 
                 <div class="flex items-start gap-3">
                   <div
-                    class="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0"
+                    class="w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
                   >
-                    <i class="ri-time-line text-green-500 text-sm"></i>
+                    <i class="ri-time-line text-primary-500 text-sm"></i>
                   </div>
                   <p>{{ t('comp.disclaimer.item2') }}</p>
                 </div>
@@ -60,7 +60,7 @@
           <div class="px-6 pb-8 space-y-3">
             <button
               @click="handleAgree"
-              class="w-full py-4 rounded-2xl text-base font-medium text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-green-500/25"
+              class="w-full py-4 rounded-2xl text-base font-medium text-white bg-gradient-to-r from-primary-500 to-emerald-600 hover:from-primary-600 hover:to-emerald-700 active:scale-[0.98] transition-all duration-200 shadow-lg shadow-primary-500/25"
             >
               <span class="flex items-center justify-center gap-2">
                 <i class="ri-check-line text-lg"></i>
@@ -85,7 +85,7 @@
         class="fixed inset-0 z-[999999] flex items-center justify-center bg-black/60 backdrop-blur-md"
       >
         <div
-          class="w-full max-w-md mx-4 bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-2xl"
+          class="w-full max-w-md mx-4 bg-white dark:bg-dark-100 rounded-3xl overflow-hidden shadow-2xl"
         >
           <div class="h-2 bg-gradient-to-r from-pink-400 via-rose-500 to-red-500"></div>
 
@@ -120,12 +120,12 @@
             <div class="grid grid-cols-2 gap-4">
               <button
                 @click="openDonateLink('wechat')"
-                class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
+                class="flex flex-col items-center gap-2 p-4 rounded-2xl bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors"
               >
-                <div class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-primary-500 flex items-center justify-center">
                   <i class="ri-wechat-fill text-2xl text-white"></i>
                 </div>
-                <span class="text-sm font-medium text-green-700 dark:text-green-300">{{
+                <span class="text-sm font-medium text-primary-700 dark:text-primary-300">{{
                   t('comp.donate.wechat')
                 }}</span>
               </button>
@@ -170,13 +170,13 @@
         @click.self="closeQRCode"
       >
         <div
-          class="w-full max-w-sm mx-4 bg-white dark:bg-gray-900 rounded-3xl overflow-hidden shadow-2xl"
+          class="w-full max-w-sm mx-4 bg-white dark:bg-dark-100 rounded-3xl overflow-hidden shadow-2xl"
         >
           <div
             class="h-2"
             :class="
               qrcodeType === 'wechat'
-                ? 'bg-gradient-to-r from-green-400 to-green-600'
+                ? 'bg-gradient-to-r from-primary-400 to-primary-600'
                 : 'bg-gradient-to-r from-blue-400 to-blue-600'
             "
           ></div>

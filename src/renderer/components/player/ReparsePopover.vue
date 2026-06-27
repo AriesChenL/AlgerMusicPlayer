@@ -13,7 +13,7 @@
         <template #trigger>
           <i
             class="iconfont ri-refresh-line"
-            :class="{ 'text-green-500': isReparse, 'animate-spin': isReparsing }"
+            :class="{ 'text-primary-500': isReparse, 'animate-spin': isReparsing }"
           ></i>
         </template>
         {{ t('player.playBar.reparse') }}
@@ -39,7 +39,9 @@
                   ? 'cursor-pointer bg-light-200 dark:bg-dark-200 hover:bg-light-300 dark:hover:bg-dark-300'
                   : 'opacity-40 cursor-not-allowed bg-light-200 dark:bg-dark-200',
                 {
-                  'bg-green-50 dark:bg-green-900/20 text-green-500': isCurrentSource(source.id),
+                  'bg-primary-50 dark:bg-primary-900/20 text-primary-500': isCurrentSource(
+                    source.id
+                  ),
                   'opacity-50 cursor-not-allowed': isReparsing && source.available
                 }
               ]"

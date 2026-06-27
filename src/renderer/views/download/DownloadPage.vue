@@ -1,5 +1,5 @@
 <template>
-  <div class="download-page h-full w-full bg-white dark:bg-black transition-colors duration-500">
+  <div class="download-page h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar ref="scrollbarRef" class="h-full" @scroll="handleDownloadScroll">
       <div class="download-content" :style="{ paddingBottom: contentPaddingBottom }">
         <!-- Hero Section -->
@@ -58,11 +58,11 @@
 
         <!-- Action Bar (Sticky) -->
         <section
-          class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
+          class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
         >
           <div class="flex items-center justify-between gap-4">
             <!-- Tabs (Segment Control) -->
-            <div class="flex items-center gap-2 bg-neutral-100 dark:bg-neutral-900 p-1 rounded-xl">
+            <div class="flex items-center gap-2 bg-neutral-100 dark:bg-dark-100 p-1 rounded-xl">
               <button
                 v-for="tab in ['downloading', 'downloaded']"
                 :key="tab"
@@ -90,14 +90,14 @@
               </button>
 
               <button
-                class="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all hover:scale-110 hover:text-primary hover:bg-primary/10"
+                class="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all hover:scale-110 hover:text-primary hover:bg-primary/10"
                 @click="openDownloadPath"
               >
                 <i class="ri-folder-open-line text-lg" />
               </button>
 
               <button
-                class="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all hover:scale-110 hover:text-primary hover:bg-primary/10"
+                class="w-10 h-10 rounded-full flex items-center justify-center bg-neutral-100 dark:bg-dark-100 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition-all hover:scale-110 hover:text-primary hover:bg-primary/10"
                 @click="showSettingsDrawer = true"
               >
                 <i class="ri-settings-3-line text-lg" />
@@ -123,7 +123,7 @@
               <div
                 v-for="item in downloadStore.downloadingList"
                 :key="item.taskId"
-                class="downloading-item group p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all"
+                class="downloading-item group p-4 rounded-2xl bg-neutral-50 dark:bg-dark-100/50 border border-neutral-100 dark:border-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all"
               >
                 <div class="flex items-center gap-4">
                   <img
@@ -477,7 +477,7 @@
                   <div
                     v-for="(comp, idx) in formatComponents"
                     :key="comp.id"
-                    class="flex items-center justify-between p-2 bg-neutral-50 dark:bg-neutral-900 rounded-lg"
+                    class="flex items-center justify-between p-2 bg-neutral-50 dark:bg-dark-100 rounded-lg"
                   >
                     <span class="text-xs">{{
                       t(`download.settingsPanel.components.${comp.type}`)
@@ -524,7 +524,7 @@
               </div>
 
               <div
-                class="p-3 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800"
+                class="p-3 bg-neutral-50 dark:bg-dark-100 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800"
               >
                 <p class="text-[10px] text-neutral-400 mb-1 uppercase font-bold">
                   {{ t('download.settingsPanel.preview') }}

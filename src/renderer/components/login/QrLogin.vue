@@ -244,7 +244,7 @@ onUnmounted(() => {
 
 .scanned-overlay {
   @apply absolute inset-0 flex flex-col items-center justify-center;
-  @apply bg-green-500 bg-opacity-80 rounded-2xl;
+  @apply bg-primary-500 bg-opacity-80 rounded-2xl;
 
   .scanned-icon {
     @apply text-white text-4xl font-bold mb-2;
@@ -263,7 +263,7 @@ onUnmounted(() => {
   }
 
   &.scanned {
-    @apply text-green-400;
+    @apply text-primary-400;
   }
 }
 

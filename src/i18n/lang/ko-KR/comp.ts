@@ -304,7 +304,9 @@ export default {
   localMusic: '로컬 음악',
   pages: {
     toplist: {
-      desc: '가장 권위 있는 음악 차트, 지금 가장 핫한 음악을 발견하세요'
+      desc: '가장 권위 있는 음악 차트, 지금 가장 핫한 음악을 발견하세요',
+      official: '공식 차트',
+      more: '더 많은 차트'
     },
     mv: {
       desc: '멋진 영상 콘텐츠 탐색',

@@ -54,7 +54,7 @@
   --text-color-100: #e9ecef;
   --text-color-200: #dee2e6;
   --text-color-300: #dde0e3;
-  --primary-color: #22c55e;
+  --primary-color: #e08a3c;
 }
 
 .theme-light {
@@ -67,7 +67,7 @@
   --text-color-100: #161616;
   --text-color-200: #2d2d2d;
   --text-color-300: #3d3d3d;
-  --primary-color: #22c55e;
+  --primary-color: #e08a3c;
 }
 
 .theme-gray {
@@ -80,7 +80,7 @@
   --text-color-100: #161616;
   --text-color-200: #2d2d2d;
   --text-color-300: #3d3d3d;
-  --primary-color: #22c55e;
+  --primary-color: #e08a3c;
 }
 
 :root {
@@ -98,7 +98,8 @@
 
 /* PC 端：有左侧菜单，左边距为 0 */
 .pc {
-  --page-pl: 0px;
+  /* PC 端给主内容左侧留出与右侧一致的留白（设计稿主内容区有 ~24px 内边距） */
+  --page-pl: var(--page-pr);
 }
 
 /* 响应式边距 */

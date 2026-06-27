@@ -311,10 +311,10 @@ onMounted(() => {
     --muted-color: rgba(0, 0, 0, 0.6);
     --track-color: rgba(0, 0, 0, 0.2);
     --track-color-hover: rgba(0, 0, 0, 0.4);
-    --fill-color: #1ed760;
-    --fill-color-alt: #1ed760;
-    --fill-color-transparent: rgba(30, 215, 96, 0.25);
-    --fill-color-light: rgba(30, 215, 96, 0.5);
+    --fill-color: #e08a3c;
+    --fill-color-alt: #f4a85e;
+    --fill-color-transparent: rgba(224, 138, 60, 0.25);
+    --fill-color-light: rgba(224, 138, 60, 0.5);
     --button-bg: rgba(0, 0, 0, 0.1);
     --button-hover: rgba(0, 0, 0, 0.2);
   }
@@ -324,10 +324,10 @@ onMounted(() => {
     --muted-color: rgba(255, 255, 255, 0.6);
     --track-color: rgba(255, 255, 255, 0.1);
     --track-color-hover: rgba(255, 255, 255, 0.2);
-    --fill-color: #73e49a;
-    --fill-color-alt: #73e49a;
-    --fill-color-transparent: rgba(115, 228, 154, 0.25);
-    --fill-color-light: rgba(115, 228, 154, 0.5);
+    --fill-color: #f4a85e;
+    --fill-color-alt: #f4a85e;
+    --fill-color-transparent: rgba(244, 168, 94, 0.25);
+    --fill-color-light: rgba(244, 168, 94, 0.5);
     --button-bg: rgba(255, 255, 255, 0.05);
     --button-hover: rgba(255, 255, 255, 0.1);
   }
@@ -394,7 +394,8 @@ onMounted(() => {
 
     .progress-fill {
       @apply absolute top-0 left-0 h-full rounded-full transition-all duration-150;
-      background: linear-gradient(90deg, var(--fill-color), var(--fill-color-light));
+      /* 进度条固定琥珀（贴设计稿） */
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
       box-shadow: 0 0 8px var(--fill-color-transparent);
     }
 
@@ -464,18 +465,24 @@ onMounted(() => {
   }
 
   &.play-btn {
-    background: linear-gradient(145deg, var(--fill-color), var(--fill-color-alt));
-    color: var(--text-on-fill);
-    width: 46px;
-    height: 46px;
-    box-shadow: 0 3px 8px var(--fill-color-transparent);
+    /* 主播放键固定琥珀渐变（贴设计稿），不再跟封面自适应 */
+    background: linear-gradient(140deg, var(--accent2), var(--accent));
+    color: var(--accentText);
+    /* 对齐设计稿主播放键尺寸（约 64px） */
+    width: 64px;
+    height: 64px;
+    box-shadow:
+      0 10px 24px -8px var(--accentLine),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
 
     &:hover {
-      box-shadow: 0 4px 12px var(--fill-color-transparent);
+      box-shadow:
+        0 12px 28px -8px var(--accentLine),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
 
     .iconfont {
-      font-size: 1.25rem;
+      font-size: 1.6rem;
     }
   }
 
@@ -550,6 +557,6 @@ onMounted(() => {
 }
 
 .intelligence-active {
-  @apply text-green-500;
+  @apply text-primary-500;
 }
 </style>

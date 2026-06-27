@@ -1,0 +1,154 @@
+/**
+ * Design tokens — 暖色琥珀重设计令牌系统
+ * 对应设计稿 "Music Redesign"。
+ * 主题（明/暗）× 强调色（orange/amber/terracotta）× 圆角（default/round/sharp）。
+ *
+ * 取值来源：claude.ai/design Music Redesign.dc.html 的 #mr-root 变量定义。
+ * - 暗色为默认（:root）。
+ * - 明色通过 html[data-theme="light"] 覆盖。
+ * - 强调色通过 html[data-accent="..."] 覆盖。
+ * - 圆角通过 html[data-radius="..."] 覆盖。
+ */
+
+:root {
+  /* 窗口与面板层级 */
+  --win: #1b1612;
+  --titlebar: rgba(40, 33, 27, 0.55);
+  --panel: #241e19;
+  --panel2: #2b241e;
+  --elev: #322a23;
+  --elev2: #3b3129;
+
+  /* 分隔线 */
+  --line: rgba(255, 255, 255, 0.06);
+  --line2: rgba(255, 255, 255, 0.11);
+
+  /* 文字层级 */
+  --text: #f2ebe3;
+  --text2: #bcae9f;
+  --text3: #897c6e;
+
+  /* chip / 标签 */
+  --chip: #2a241e;
+  --chipText: #cabdaf;
+
+  /* 阴影 */
+  --shadow: 0 22px 54px -20px rgba(0, 0, 0, 0.6);
+  --winShadow: 0 50px 130px -34px rgba(0, 0, 0, 0.78), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --glass: rgba(34, 28, 23, 0.72);
+
+  /* 背景墙渐变 */
+  --wall1: #3a2a1d;
+  --wall2: #1a1410;
+  --wall3: #2d1f16;
+
+  /* 强调色（默认 orange） */
+  --accent: #e08a3c;
+  --accent2: #f4a85e;
+  --accentText: #3a2510;
+  --accentSoft: rgba(224, 138, 60, 0.15);
+  --accentLine: rgba(224, 138, 60, 0.45);
+
+  /* 圆角刻度（default） */
+  --rc: 22px; /* 卡片 */
+  --rb: 15px; /* 块 */
+  --rs: 12px; /* 小元素 */
+}
+
+/* ===================== 明色主题 ===================== */
+html[data-theme='light'] {
+  --win: #fbf6ef;
+  --titlebar: rgba(255, 255, 255, 0.6);
+  --panel: #ffffff;
+  --panel2: #f7f0e7;
+  --elev: #f2e9dd;
+  --elev2: #ece0d2;
+  --line: rgba(80, 50, 20, 0.08);
+  --line2: rgba(80, 50, 20, 0.15);
+  --text: #2c2118;
+  --text2: #6d5f50;
+  --text3: #a0917f;
+  --chip: #f2eadf;
+  --chipText: #6d5f50;
+  --shadow: 0 18px 42px -18px rgba(120, 80, 30, 0.24);
+  --winShadow: 0 50px 130px -34px rgba(90, 55, 20, 0.34), 0 0 0 1px rgba(120, 80, 30, 0.06);
+  --glass: rgba(255, 255, 255, 0.7);
+  --wall1: #f6d9b0;
+  --wall2: #e7b483;
+  --wall3: #f0c79a;
+}
+
+/* ===================== 强调色变体 ===================== */
+html[data-accent='amber'] {
+  --accent: #e0a23c;
+  --accent2: #f4c05e;
+  --accentSoft: rgba(224, 162, 60, 0.15);
+  --accentLine: rgba(224, 162, 60, 0.45);
+}
+html[data-accent='terracotta'] {
+  --accent: #d96a3c;
+  --accent2: #ee8a5e;
+  --accentSoft: rgba(217, 106, 60, 0.15);
+  --accentLine: rgba(217, 106, 60, 0.45);
+}
+
+/* ===================== 圆角变体 ===================== */
+html[data-radius='round'] {
+  --rc: 16px;
+  --rb: 12px;
+  --rs: 10px;
+}
+html[data-radius='sharp'] {
+  --rc: 10px;
+  --rb: 9px;
+  --rs: 7px;
+}
+
+/* ===================== 页面/面板背景工具类 ===================== */
+.mr-win {
+  background: var(--win);
+}
+.mr-panel {
+  background: var(--panel);
+}
+
+/* ===================== 全局滚动条 ===================== */
+.mr-scope ::-webkit-scrollbar,
+#app ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.mr-scope ::-webkit-scrollbar-thumb,
+#app ::-webkit-scrollbar-thumb {
+  background: var(--line2);
+  border-radius: 8px;
+}
+.mr-scope ::-webkit-scrollbar-track,
+#app ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===================== 设计稿关键帧 ===================== */
+@keyframes mr-eqbar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+@keyframes mr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes mr-lyricglow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}

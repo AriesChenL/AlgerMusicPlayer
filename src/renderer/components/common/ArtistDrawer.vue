@@ -288,7 +288,7 @@ defineExpose({
   @apply h-full bg-light dark:bg-dark px-6 overflow-hidden flex flex-col;
 
   .close-btn {
-    @apply absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-green-500 text-2xl cursor-pointer p-2;
+    @apply absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-primary-500 text-2xl cursor-pointer p-2;
   }
 
   .artist-header {

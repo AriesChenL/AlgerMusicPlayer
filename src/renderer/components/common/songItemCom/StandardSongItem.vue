@@ -40,7 +40,7 @@
           <n-ellipsis
             class="text-ellipsis"
             line-clamp="1"
-            :class="{ 'text-green-500': isPlaying }"
+            :class="{ 'text-primary-500': isPlaying }"
             >{{ item.name }}</n-ellipsis
           >
         </div>
@@ -48,7 +48,7 @@
           <n-ellipsis class="text-ellipsis" line-clamp="1">
             <template v-for="(artist, index) in artists" :key="index">
               <span
-                class="cursor-pointer hover:text-green-500"
+                class="cursor-pointer hover:text-primary-500"
                 @click.stop="onArtistClick(artist.id)"
                 >{{ artist.name }}</span
               >
@@ -79,7 +79,7 @@
         </n-tooltip>
         <div
           class="song-item-operating-play bg-gray-300 dark:bg-gray-800 animate__animated"
-          :class="{ 'bg-green-600': isPlaying, animate__flipInY: playLoading }"
+          :class="{ 'bg-primary-600': isPlaying, animate__flipInY: playLoading }"
           @click="onPlayMusic"
         >
           <i v-if="isPlaying && play" class="iconfont icon-stop"></i>
@@ -175,7 +175,7 @@ const onPlayNext = () => {
   }
 
   .song-item-operating {
-    @apply flex items-center rounded-full ml-4 border dark:border-gray-700 border-gray-200 bg-light dark:bg-black;
+    @apply flex items-center rounded-full ml-4 border dark:border-gray-700 border-gray-200 bg-light dark:bg-dark;
 
     .iconfont {
       @apply text-xl;
@@ -193,7 +193,7 @@ const onPlayNext = () => {
       @apply mr-2 cursor-pointer transition-all;
 
       .iconfont {
-        @apply text-xl transition text-gray-500 dark:text-gray-400 hover:text-green-500;
+        @apply text-xl transition text-gray-500 dark:text-gray-400 hover:text-primary-500;
       }
     }
 
@@ -206,8 +206,8 @@ const onPlayNext = () => {
              border dark:border-gray-700 border-gray-200 text-gray-900 dark:text-white;
 
       &:hover,
-      &.bg-green-600 {
-        @apply bg-green-500 border-green-500 text-white;
+      &.bg-primary-600 {
+        @apply bg-primary-500 border-primary-500 text-white;
       }
     }
   }

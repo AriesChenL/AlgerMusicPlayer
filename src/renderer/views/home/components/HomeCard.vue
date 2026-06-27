@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group relative overflow-hidden rounded-2xl bg-white/5 transition-all duration-300 hover:bg-white/10 hover:shadow-2xl hover:shadow-black/20 dark:bg-neutral-900/50"
+    class="group relative overflow-hidden rounded-2xl bg-white/5 transition-all duration-300 hover:bg-white/10 hover:shadow-2xl hover:shadow-black/20 dark:bg-dark-100/50"
     :class="[containerClass]"
     @click="$emit('click')"
   >

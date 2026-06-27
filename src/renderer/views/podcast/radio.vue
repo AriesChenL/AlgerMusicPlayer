@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="radio-detail-page h-full w-full bg-white dark:bg-black transition-colors duration-500"
-  >
+  <div class="radio-detail-page h-full w-full mr-win transition-colors duration-500">
     <n-scrollbar class="h-full" @scroll="handleScroll">
       <div class="radio-detail-content w-full pb-32">
         <n-spin :show="isLoading && !currentRadio">
@@ -103,7 +101,7 @@
 
             <!-- Action Bar -->
             <section
-              class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
+              class="action-bar sticky top-0 z-20 page-padding-x py-3 md:py-4 bg-white/80 dark:bg-dark/80 backdrop-blur-xl border-b border-neutral-100 dark:border-neutral-800/50"
             >
               <div class="flex items-center justify-between gap-3">
                 <div class="flex items-center gap-3">

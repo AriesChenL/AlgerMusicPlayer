@@ -6,32 +6,41 @@ export default {
     extend: {
       colors: {
         primary: {
-          // 品牌绿，保持与 logo / README 徽章一致
-          DEFAULT: '#22c55e',
-          // 更浅的悬停色（原先误设为与 DEFAULT 相同）
-          light: '#4ade80',
-          // 更深的按下色
-          dark: '#16a34a',
-          hover: '#34d27b',
-          pressed: '#16a34a'
+          // 暖色琥珀强调色（设计稿 --accent / --accent2）
+          DEFAULT: '#e08a3c',
+          light: '#f4a85e',
+          dark: '#c5702a',
+          hover: '#f4a85e',
+          pressed: '#c5702a',
+          // 数值梯度：供原绿色梯度类（green-50..900）平滑迁移
+          50: '#fdf3e7',
+          100: '#fbe4c9',
+          200: '#f6cb98',
+          300: '#f1ad66',
+          400: '#ea9747',
+          500: '#e08a3c',
+          600: '#c5702a',
+          700: '#a3591f',
+          800: '#80471c',
+          900: '#693c1a'
         },
         secondary: {
-          DEFAULT: '#6c757d',
-          light: '#8c959e',
-          dark: '#495057'
+          DEFAULT: '#8a7c6e',
+          light: '#bcae9f',
+          dark: '#6d5f50'
         },
         dark: {
-          // 微冷调 off-black，替代纯黑，增加层次与质感
-          DEFAULT: '#0a0b0d',
-          100: '#15161a',
-          200: '#2a2c31',
-          300: '#3a3d43'
+          // 暖色窗口 / 面板层级（设计稿 --win / --panel / --panel2 / --elev）
+          DEFAULT: '#1b1612',
+          100: '#241e19',
+          200: '#2b241e',
+          300: '#322a23'
         },
         light: {
           DEFAULT: '#fff',
-          100: '#f8f9fa',
-          200: '#e9ecef',
-          300: '#dee2e6'
+          100: '#f7f0e7',
+          200: '#f2e9dd',
+          300: '#ece0d2'
         }
       }
     }
