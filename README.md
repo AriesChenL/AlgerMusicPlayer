@@ -48,12 +48,11 @@
 
 ## 软件截图
 
-![首页白](./docs/image.png)
-![首页黑](./docs/image3.png)
-![歌词](./docs/image6.png)
-![桌面歌词](./docs/image2.png)
-![设置页面](./docs/image4.png)
-![音乐远程控制](./docs/image5.png)
+![首页](./docs/image0.png)
+![歌单](./docs/image1.png)
+![我的](./docs/image2.png)
+![设置](./docs/image3.png)
+![歌词](./docs/image4.png)
 
 ## 项目启动
 

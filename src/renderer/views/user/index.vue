@@ -185,6 +185,7 @@
                   class="rank-item"
                   :class="setAnimationClass('animate__bounceInUp')"
                   :style="setAnimationDelay(index, 25)"
+                  @click="playRecord(item)"
                 >
                   <span class="rank-num" :class="{ accent: index < 3 }">{{ index + 1 }}</span>
                   <n-image
@@ -197,12 +198,16 @@
                     <div class="rank-name">{{ item.name }}</div>
                     <div class="rank-artist">{{ recordArtist(item) }}</div>
                   </div>
-                  <button class="rank-btn" @click.stop="handlePlay">
+                  <button
+                    class="rank-btn"
+                    :class="{ liked: isLiked(item) }"
+                    @click.stop="toggleLike(item)"
+                  >
                     <svg
                       width="17"
                       height="17"
                       viewBox="0 0 24 24"
-                      fill="none"
+                      :fill="isLiked(item) ? 'currentColor' : 'none'"
                       stroke="currentColor"
                       stroke-width="1.8"
                       stroke-linecap="round"
@@ -213,7 +218,7 @@
                       />
                     </svg>
                   </button>
-                  <button class="rank-btn rank-btn-play" @click.stop="handlePlay">
+                  <button class="rank-btn rank-btn-play" @click.stop="playRecord(item)">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M8 5.5v13l11-6.5z" />
                     </svg>
@@ -247,6 +252,7 @@ import { useRouter } from 'vue-router';
 import { getUserAlbumSublist, getUserDetail, getUserPlaylist, getUserRecord } from '@/api/user';
 import { navigateToMusicList } from '@/components/common/MusicListNavigator';
 import PlayBottom from '@/components/common/PlayBottom.vue';
+import { useFavoriteStore } from '@/store/modules/favorite';
 import { usePlayerStore } from '@/store/modules/player';
 import { useUserStore } from '@/store/modules/user';
 import { getImgUrl, isElectron, isMobile, setAnimationClass, setAnimationDelay } from '@/utils';
@@ -260,6 +266,7 @@ defineOptions({
 const { t } = useI18n();
 const userStore = useUserStore();
 const playerStore = usePlayerStore();
+const favoriteStore = useFavoriteStore();
 const router = useRouter();
 const { userDetail, recordList } = storeToRefs(userStore);
 const infoLoading = ref(false);
@@ -515,9 +522,20 @@ const openAlbum = async (item: any) => {
   });
 };
 
-const handlePlay = () => {
-  const tracks = recordList.value || [];
-  playerStore.setPlayList(tracks);
+// 播放听歌排行中指定的一首
+const playRecord = (item: any) => {
+  playerStore.setPlayList(recordList.value || []);
+  playerStore.setPlay(item);
+};
+
+// 收藏/取消收藏
+const isLiked = (item: any) => favoriteStore.isFavorite(item.id);
+const toggleLike = (item: any) => {
+  if (favoriteStore.isFavorite(item.id)) {
+    favoriteStore.removeFromFavorite(item.id);
+  } else {
+    favoriteStore.addToFavorite(item.id);
+  }
 };
 
 // 显示关注列表
@@ -942,6 +960,10 @@ const currentLoginType = computed(() => userStore.loginType);
 
   &:hover {
     background: var(--elev);
+    color: var(--accent);
+  }
+
+  &.liked {
     color: var(--accent);
   }
 
