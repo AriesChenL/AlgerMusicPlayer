@@ -3,7 +3,20 @@
     <!-- 侧边图标导航栏（设计稿 sidebar rail，严格 8 项 + 内联描边 SVG） -->
     <div class="app-menu" :class="{ 'app-menu-expanded': settingsStore.setData.isMenuExpanded }">
       <div class="app-menu-header">
-        <div class="app-menu-logo" @click="toggleMenu">A</div>
+        <div class="app-menu-logo" @click="toggleMenu">
+          <svg class="app-menu-logo-mark" viewBox="4.65 3.2 113.6 113.6" fill="currentColor">
+            <rect x="16" y="50" width="5.4" height="20" rx="2.7" />
+            <rect x="25.5" y="42" width="5.4" height="36" rx="2.7" />
+            <rect x="35" y="32" width="5.4" height="56" rx="2.7" />
+            <rect x="44.5" y="44" width="5.4" height="32" rx="2.7" />
+            <rect x="54" y="24" width="5.4" height="72" rx="2.7" />
+            <rect x="63.5" y="38" width="5.4" height="44" rx="2.7" />
+            <rect x="73" y="30" width="5.4" height="60" rx="2.7" />
+            <rect x="82.5" y="44" width="5.4" height="32" rx="2.7" />
+            <rect x="92" y="36" width="5.4" height="48" rx="2.7" />
+            <rect x="101.5" y="50" width="5.4" height="20" rx="2.7" />
+          </svg>
+        </div>
         <span v-if="settingsStore.setData.isMenuExpanded" class="app-menu-logo-text">
           <span class="wm">Aries</span><span class="wm2">Music</span>
         </span>
@@ -177,9 +190,13 @@ const toggleMenu = () => {
   justify-content: center;
   cursor: pointer;
   color: var(--accentText);
-  font-weight: 900;
-  font-size: 19px;
   box-shadow: 0 6px 14px -4px var(--accentLine);
+}
+
+.app-menu-logo-mark {
+  width: 26px;
+  height: 26px;
+  display: block;
 }
 
 .app-menu-list {
