@@ -6,9 +6,6 @@ const store = new Store();
 // 默认窗口尺寸
 export const DEFAULT_MAIN_WIDTH = 1200;
 export const DEFAULT_MAIN_HEIGHT = 780;
-export const DEFAULT_MINI_WIDTH = 340;
-export const DEFAULT_MINI_HEIGHT = 64;
-export const DEFAULT_MINI_EXPANDED_HEIGHT = 400;
 
 // 用于存储窗口状态的键名
 export const WINDOW_STATE_KEY = 'windowState';
@@ -361,10 +358,6 @@ class WindowSizeManager {
       );
     }
 
-    // 检查是否是mini模式窗口（根据窗口大小判断）
-    const [currentWidth, currentHeight] = win.getSize();
-    const isMiniMode = currentWidth === DEFAULT_MINI_WIDTH && currentHeight === DEFAULT_MINI_HEIGHT;
-
     const isMaximized = win.isMaximized();
     let state: WindowState;
 
@@ -409,12 +402,6 @@ class WindowSizeManager {
         isMaximized: false
       };
       console.log('state IsNormal', state);
-    }
-
-    // 如果是mini模式，不保存到持久化存储，只返回状态用于内存中的恢复
-    if (isMiniMode) {
-      console.log('检测到mini模式窗口，不保存到持久化存储');
-      return state;
     }
 
     // 保存状态到存储
@@ -629,23 +616,6 @@ class WindowSizeManager {
 
         // 保存窗口状态
         this.saveWindowState(win);
-      }
-    });
-
-    ipcMain.on('resize-mini-window', (event, showPlaylist) => {
-      const win = BrowserWindow.fromWebContents(event.sender);
-      if (win && !win.isDestroyed()) {
-        if (showPlaylist) {
-          console.log(`扩大迷你窗口至 ${DEFAULT_MINI_WIDTH} x ${DEFAULT_MINI_EXPANDED_HEIGHT}`);
-          win.setMinimumSize(DEFAULT_MINI_WIDTH, DEFAULT_MINI_HEIGHT);
-          win.setMaximumSize(DEFAULT_MINI_WIDTH, DEFAULT_MINI_EXPANDED_HEIGHT);
-          win.setSize(DEFAULT_MINI_WIDTH, DEFAULT_MINI_EXPANDED_HEIGHT, false);
-        } else {
-          console.log(`缩小迷你窗口至 ${DEFAULT_MINI_WIDTH} x ${DEFAULT_MINI_HEIGHT}`);
-          win.setMaximumSize(DEFAULT_MINI_WIDTH, DEFAULT_MINI_HEIGHT);
-          win.setMinimumSize(DEFAULT_MINI_WIDTH, DEFAULT_MINI_HEIGHT);
-          win.setSize(DEFAULT_MINI_WIDTH, DEFAULT_MINI_HEIGHT, false);
-        }
       }
     });
 

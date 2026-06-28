@@ -9,11 +9,8 @@ interface API {
   quitApp: () => void;
   dragStart: (data: any) => void;
   miniTray: () => void;
-  miniWindow: () => void;
-  restore: () => void;
   restart: () => void;
   resizeWindow: (width: number, height: number) => void;
-  resizeMiniWindow: (showPlaylist: boolean) => void;
   openLyric: () => void;
   sendLyric: (data: any) => void;
   sendSong: (data: any) => void;

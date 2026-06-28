@@ -137,29 +137,8 @@ if (!isLyricWindow.value) {
 
 handleSetLanguage(settingsStore.setData.language);
 
-// 监听迷你模式状态
 if (isElectron) {
   window.api.onLanguageChanged(handleSetLanguage);
-  window.electron.ipcRenderer.on('mini-mode', (_, value) => {
-    settingsStore.setMiniMode(value);
-    if (value) {
-      // 存储当前路由
-      localStorage.setItem('currentRoute', router.currentRoute.value.path);
-      router.push('/mini');
-    } else {
-      // 清理迷你模式下设置的 body 样式
-      document.body.style.height = '';
-      document.body.style.overflow = '';
-      // 恢复当前路由
-      const currentRoute = localStorage.getItem('currentRoute');
-      if (currentRoute) {
-        router.push(currentRoute);
-        localStorage.removeItem('currentRoute');
-      } else {
-        router.push('/');
-      }
-    }
-  });
 }
 
 // 使用应用内快捷键

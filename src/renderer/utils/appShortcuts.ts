@@ -2,7 +2,7 @@ import { onMounted, onUnmounted } from 'vue';
 
 import i18n from '@/../i18n/renderer';
 import { audioService } from '@/services/audioService';
-import { usePlayerStore, useSettingsStore } from '@/store';
+import { usePlayerStore } from '@/store';
 
 import {
   hasShortcutAction,
@@ -80,12 +80,8 @@ export async function handleShortcutAction(action: ShortcutAction) {
   }
 
   const playerStore = usePlayerStore();
-  const settingsStore = useSettingsStore();
 
   const showToast = (message: string, iconName: string) => {
-    if (settingsStore.isMiniMode) {
-      return;
-    }
     showShortcutToast(message, iconName);
   };
 

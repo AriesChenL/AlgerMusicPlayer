@@ -21,10 +21,6 @@
         下载桌面版
       </n-button>
       <template v-if="isElectron">
-        <!-- 画中画（迷你模式）为应用特有功能，各平台均保留 -->
-        <button class="mr-titlebar-btn" title="迷你模式" @click="miniWindow">
-          <i class="iconfont ri-picture-in-picture-line"></i>
-        </button>
         <!-- 最小化 / 关闭：macOS 交由原生交通灯接管，仅非 macOS 显示自绘按钮 -->
         <template v-if="!isMac">
           <button class="mr-titlebar-btn" title="最小化" @click="minimize">
@@ -172,11 +168,6 @@ const minimize = () => {
     return;
   }
   window.api.minimize();
-};
-
-const miniWindow = () => {
-  if (!isElectron) return;
-  window.api.miniWindow();
 };
 
 const handleAction = (action: 'minimize' | 'close') => {

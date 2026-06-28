@@ -34,18 +34,16 @@
         </div>
       </div>
       <!-- 底部音乐播放 -->
-      <template v-if="!settingsStore.isMiniMode">
-        <play-bar
-          v-if="!settingsStore.isMobile"
-          v-show="isPlay"
-          :style="playerStore.musicFull ? 'bottom: 0;' : ''"
-        />
-        <mobile-play-bar
-          v-else
-          v-show="isPlay"
-          :style="settingsStore.isMobile && playerStore.musicFull ? 'bottom: 0;' : ''"
-        />
-      </template>
+      <play-bar
+        v-if="!settingsStore.isMobile"
+        v-show="isPlay"
+        :style="playerStore.musicFull ? 'bottom: 0;' : ''"
+      />
+      <mobile-play-bar
+        v-else
+        v-show="isPlay"
+        :style="settingsStore.isMobile && playerStore.musicFull ? 'bottom: 0;' : ''"
+      />
     </div>
     <update-modal v-if="isElectron" />
     <playlist-drawer v-model="showPlaylistDrawer" :song-id="currentSongId" />
