@@ -81,7 +81,7 @@
               </div>
             </div>
             <div class="profile-stats">
-              <div class="stat-item">
+              <div class="stat-item" @click="showFollowerList">
                 <span class="stat-num">{{ userDetail.profile.followeds }}</span>
                 <span class="stat-label">{{ t('user.profile.followers') }}</span>
               </div>
@@ -91,7 +91,7 @@
                 <span class="stat-label">{{ t('user.profile.following') }}</span>
               </div>
               <div class="stat-div"></div>
-              <div class="stat-item">
+              <div class="stat-item stat-item--static">
                 <span class="stat-num accent">{{ userDetail.level }}</span>
                 <span class="stat-label">{{ t('user.profile.level') }}</span>
               </div>
@@ -544,11 +544,11 @@ const showFollowList = () => {
   router.push('/user/follows');
 };
 
-// // 显示粉丝列表
-// const showFollowerList = () => {
-//   if (!user.value) return;
-//   router.push('/user/followers');
-// };
+// 显示粉丝列表
+const showFollowerList = () => {
+  if (!user.value) return;
+  router.push('/user/followers');
+};
 
 const handleLoginSuccess = () => {
   // 处理登录成功后的逻辑
@@ -713,6 +713,10 @@ const currentLoginType = computed(() => userStore.loginType);
   align-items: baseline;
   gap: 6px;
   cursor: pointer;
+
+  &--static {
+    cursor: default;
+  }
 }
 .stat-num {
   font-size: 18px;
