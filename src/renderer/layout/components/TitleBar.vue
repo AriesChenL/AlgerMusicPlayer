@@ -159,7 +159,7 @@ const rememberChoice = ref(false);
 
 const openDownloadPage = () => {
   if (!isElectron) {
-    window.open('https://github.com/AriesChenL/AlgerMusicPlayer/releases', '_blank');
+    window.open('https://github.com/AriesChenL/AriesMusicPlayer/releases', '_blank');
   }
 };
 

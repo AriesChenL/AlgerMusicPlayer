@@ -31,7 +31,7 @@
           <a
             class="text-primary-500"
             target="_blank"
-            href="https://github.com/AriesChenL/AlgerMusicPlayer/releases"
+            href="https://github.com/AriesChenL/AriesMusicPlayer/releases"
             >GitHub</a
           >
           {{ t('comp.installApp.downloadProblemLinkText') }}
@@ -76,7 +76,7 @@ onMounted(async () => {
 });
 
 const handleInstall = async (): Promise<void> => {
-  window.open('https://github.com/AriesChenL/AlgerMusicPlayer/releases', '_blank');
+  window.open('https://github.com/AriesChenL/AriesMusicPlayer/releases', '_blank');
 };
 </script>
 

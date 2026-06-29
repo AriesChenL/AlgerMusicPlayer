@@ -130,7 +130,7 @@ export const getLatestReleaseInfo = async (): Promise<GithubReleaseInfo | null> 
     const token = import.meta.env.VITE_GITHUB_TOKEN;
     const headers = {};
     // 构建 API URL 列表
-    const apiUrls = ['https://api.github.com/repos/AriesChenL/AlgerMusicPlayer/releases/latest'];
+    const apiUrls = ['https://api.github.com/repos/AriesChenL/AriesMusicPlayer/releases/latest'];
 
     if (token) {
       headers['Authorization'] = `token ${token}`;
@@ -153,7 +153,7 @@ export const getLatestReleaseInfo = async (): Promise<GithubReleaseInfo | null> 
           return {
             tag_name: response.data.version,
             body: changelogResponse.data,
-            html_url: 'https://github.com/AriesChenL/AlgerMusicPlayer/releases/latest',
+            html_url: 'https://github.com/AriesChenL/AriesMusicPlayer/releases/latest',
             assets: []
           } as unknown as GithubReleaseInfo;
         }

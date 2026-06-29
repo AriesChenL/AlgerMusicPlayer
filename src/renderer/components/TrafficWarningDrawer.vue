@@ -32,7 +32,7 @@
 
           <div class="action-links">
             <a
-              href="https://github.com/AriesChenL/AlgerMusicPlayer/releases"
+              href="https://github.com/AriesChenL/AriesMusicPlayer/releases"
               target="_blank"
               class="download-link"
             >

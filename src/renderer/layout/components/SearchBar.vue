@@ -381,9 +381,9 @@ watchEffect(() => {
 const restartApp = () => window.electron.ipcRenderer.send('restart');
 const toLogin = () => router.push('/user');
 const toGithub = () =>
-  window.open('https://github.com/AriesChenL/AlgerMusicPlayer/releases', '_blank');
+  window.open('https://github.com/AriesChenL/AriesMusicPlayer/releases', '_blank');
 const toGithubRelease = () => {
-  window.location.href = 'https://github.com/AriesChenL/AlgerMusicPlayer/releases';
+  window.location.href = 'https://github.com/AriesChenL/AriesMusicPlayer/releases';
 };
 
 const isDark = computed({

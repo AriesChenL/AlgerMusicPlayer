@@ -169,7 +169,7 @@ const handleUpdate = async () => {
   const version = updateInfo.value.latestVersion;
 
   // Android APK 下载地址
-  const downloadUrl = `https://github.com/AriesChenL/AlgerMusicPlayer/releases/download/v${version}/AriesMusic-${version}.apk`;
+  const downloadUrl = `https://github.com/AriesChenL/AriesMusicPlayer/releases/download/v${version}/AriesMusic-${version}.apk`;
 
   try {
     // 获取代理节点
@@ -189,7 +189,7 @@ const handleUpdate = async () => {
     // 回退到直接打开 GitHub Releases
     const releaseUrl =
       updateInfo.value.releaseInfo?.html_url ||
-      'https://github.com/AriesChenL/AlgerMusicPlayer/releases/latest';
+      'https://github.com/AriesChenL/AriesMusicPlayer/releases/latest';
     window.open(releaseUrl, '_blank');
     closeModal();
   }

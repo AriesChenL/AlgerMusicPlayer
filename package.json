@@ -4,7 +4,7 @@
   "description": "AriesMusic",
   "author": "lynn <aries3153764534@gmail.com>",
   "main": "./out/main/index.js",
-  "homepage": "https://github.com/AriesChenL/AlgerMusicPlayer",
+  "homepage": "https://github.com/AriesChenL/AriesMusicPlayer",
   "scripts": {
     "prepare": "husky",
     "format": "prettier --write ./src",

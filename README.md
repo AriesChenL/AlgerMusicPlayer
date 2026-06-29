@@ -1,11 +1,11 @@
 <h2 align="center">🎵 AriesMusic</h2>
 <div align="center">
 <div align="center">
-  <a href="https://github.com/AriesChenL/AlgerMusicPlayer/stargazers">
-    <img src="https://img.shields.io/github/stars/AriesChenL/AlgerMusicPlayer?style=for-the-badge&logo=github&label=Stars&logoColor=white&color=22c55e" alt="GitHub stars">
+  <a href="https://github.com/AriesChenL/AriesMusicPlayer/stargazers">
+    <img src="https://img.shields.io/github/stars/AriesChenL/AriesMusicPlayer?style=for-the-badge&logo=github&label=Stars&logoColor=white&color=22c55e" alt="GitHub stars">
   </a>
-  <a href="https://github.com/AriesChenL/AlgerMusicPlayer/releases">
-    <img src="https://img.shields.io/github/v/release/AriesChenL/AlgerMusicPlayer?style=for-the-badge&logo=github&label=Release&logoColor=white&color=1a67af" alt="GitHub release">
+  <a href="https://github.com/AriesChenL/AriesMusicPlayer/releases">
+    <img src="https://img.shields.io/github/v/release/AriesChenL/AriesMusicPlayer?style=for-the-badge&logo=github&label=Release&logoColor=white&color=1a67af" alt="GitHub release">
   </a>
 </div>
 </div>
@@ -67,7 +67,7 @@ npm run dev
 
 ## 项目统计
 
-[![Stargazers over time](https://starchart.cc/AriesChenL/AlgerMusicPlayer.svg?variant=adaptive)](https://starchart.cc/AriesChenL/AlgerMusicPlayer)
+[![Stargazers over time](https://starchart.cc/AriesChenL/AriesMusicPlayer.svg?variant=adaptive)](https://starchart.cc/AriesChenL/AriesMusicPlayer)
 ![Alt](https://repobeats.axiom.co/api/embed/c4d01b3632e241c90cdec9508dfde86a7f54c9f5.svg 'Repobeats analytics image')
 
 ## 欢迎提Issues
