@@ -14,7 +14,31 @@ interface API {
   openLyric: () => void;
   sendLyric: (data: any) => void;
   sendSong: (data: any) => void;
-  unblockMusic: (id: number, data: any, enabledSources?: string[]) => Promise<any>;
+  /** 统一主进程音源解析（GD 音乐台 / 自定义 API / unblock） */
+  musicResolve: (payload: {
+    provider: 'gdmusic' | 'custom' | 'unblock';
+    track: {
+      id: number;
+      name: string;
+      artists: Array<{ name: string }>;
+      album?: { name?: string };
+    };
+    quality: string;
+    sources?: string[];
+    customApiPlugin?: string;
+  }) => Promise<{
+    url: string;
+    source: string;
+    br?: number;
+    size?: number;
+    platform?: string;
+  } | null>;
+  /** 落雪音源主进程沙箱解析（失败时渲染端回退） */
+  lxResolve: (payload: {
+    script: string;
+    musicInfo: any;
+    quality: string;
+  }) => Promise<{ url: string; source: string; quality: string } | null>;
   onLyricWindowClosed: (callback: () => void) => void;
   onLyricWindowReady: (callback: () => void) => void;
   getAppUpdateState: () => Promise<AppUpdateState>;

@@ -73,6 +73,8 @@ export interface SongResult {
   dt?: number;
   isFirstPlay?: boolean;
   isPodcast?: boolean;
+  // 本次解析得到的是否为 VIP 试听片段（用于播放成功后提示）
+  isTrialPlayback?: boolean;
 }
 
 export interface Song {

@@ -1,16 +1,10 @@
-import { cloneDeep } from 'lodash';
-import { createDiscreteApi } from 'naive-ui';
-
-import i18n from '@/../i18n/renderer';
-import { getMusicLrc, getMusicUrl, getParsingMusicUrl } from '@/api/music';
+import { getMusicLrc } from '@/api/music';
+import { resolvePlayback } from '@/services/musicResolver/engine';
 import { playbackRequestManager } from '@/services/playbackRequestManager';
-import { SongSourceConfigManager } from '@/services/SongSourceConfigManager';
 import type { ILyric, ILyricText, IWordData, SongResult } from '@/types/music';
 import { getImgUrl, isElectron } from '@/utils';
 import { getImageLinearBackground } from '@/utils/linearColor';
 import { parseLyrics as parseYrcLyrics } from '@/utils/yrcParser';
-
-const { message } = createDiscreteApi(['message']);
 
 type DiskCacheResolveResult = {
   url?: string;
@@ -68,155 +62,39 @@ export const getSongUrl = async (
 ) => {
   const numericId = typeof id === 'string' ? parseInt(id, 10) : id;
 
-  // 动态导入 settingsStore
-  const { useSettingsStore } = await import('@/store/modules/settings');
-  const settingsStore = useSettingsStore();
-
-  try {
-    // 在开始处理前验证请求
+  const checkValid = () => {
     if (requestId && !playbackRequestManager.isRequestValid(requestId)) {
-      console.log(`[getSongUrl] 请求已失效: ${requestId}`);
       throw new Error('Request cancelled');
     }
+  };
 
-    if (songData.playMusicUrl) {
-      if (isDownloaded) return songData.playMusicUrl;
-      return await resolveCachedPlaybackUrl(songData.playMusicUrl, songData);
-    }
+  checkValid();
 
-    // ==================== 自定义API最优先 ====================
-    const globalSources = settingsStore.setData.enabledMusicSources || [];
-    const useCustomApiGlobally = globalSources.includes('custom');
-
-    const songConfig = SongSourceConfigManager.getConfig(id);
-    const useCustomApiForSong = songConfig?.sources.includes('custom' as any) ?? false;
-
-    // 如果全局或歌曲专属设置中启用了自定义API，则最优先尝试
-    if ((useCustomApiGlobally || useCustomApiForSong) && settingsStore.setData.customApiPlugin) {
-      console.log(`优先级 1: 尝试使用自定义API解析歌曲 ${id}...`);
-      try {
-        const { parseFromCustomApi } = await import('@/api/parseFromCustomApi');
-        const customResult = await parseFromCustomApi(
-          numericId,
-          cloneDeep(songData),
-          settingsStore.setData.musicQuality || 'higher'
-        );
-
-        // 验证请求
-        if (requestId && !playbackRequestManager.isRequestValid(requestId)) {
-          console.log(`[getSongUrl] 自定义API解析后请求已失效: ${requestId}`);
-          throw new Error('Request cancelled');
-        }
-
-        if (
-          customResult &&
-          customResult.data &&
-          customResult.data.data &&
-          customResult.data.data.url
-        ) {
-          console.log('自定义API解析成功！');
-          if (isDownloaded) return customResult.data.data as any;
-          return await resolveCachedPlaybackUrl(customResult.data.data.url, songData);
-        } else {
-          console.log('自定义API解析失败，将使用默认降级流程...');
-          message.warning(i18n.global.t('player.reparse.customApiFailed'));
-        }
-      } catch (error) {
-        console.error('调用自定义API时发生错误:', error);
-        if ((error as Error).message === 'Request cancelled') {
-          throw error;
-        }
-        message.error(i18n.global.t('player.reparse.customApiError'));
-      }
-    }
-
-    // 如果有自定义音源设置，直接使用getParsingMusicUrl获取URL
-    if (songConfig) {
-      try {
-        console.log(`使用自定义音源解析歌曲 ID: ${id}`);
-        const res = await getParsingMusicUrl(numericId, cloneDeep(songData));
-        console.log('res', res);
-
-        // 验证请求
-        if (requestId && !playbackRequestManager.isRequestValid(requestId)) {
-          console.log(`[getSongUrl] 自定义音源解析后请求已失效: ${requestId}`);
-          throw new Error('Request cancelled');
-        }
-
-        if (res && res.data && res.data.data && res.data.data.url) {
-          return await resolveCachedPlaybackUrl(res.data.data.url, songData);
-        }
-        console.warn('自定义音源解析失败，使用默认音源');
-      } catch (error) {
-        console.error('error', error);
-        if ((error as Error).message === 'Request cancelled') {
-          throw error;
-        }
-        console.error('自定义音源解析出错:', error);
-      }
-    }
-
-    // 正常获取URL流程
-    const { data } = await getMusicUrl(numericId, isDownloaded);
-
-    // 验证请求
-    if (requestId && !playbackRequestManager.isRequestValid(requestId)) {
-      console.log(`[getSongUrl] 获取官方URL后请求已失效: ${requestId}`);
-      throw new Error('Request cancelled');
-    }
-
-    if (data && data.data && data.data[0]) {
-      const songDetail = data.data[0];
-      const hasNoUrl = !songDetail.url;
-      const isTrial = !!songDetail.freeTrialInfo;
-
-      if (hasNoUrl || isTrial) {
-        console.log(`官方URL无效 (无URL: ${hasNoUrl}, 试听: ${isTrial})，进入内置备用解析...`);
-        const res = await getParsingMusicUrl(numericId, cloneDeep(songData));
-        // 验证请求
-        if (requestId && !playbackRequestManager.isRequestValid(requestId)) {
-          console.log(`[getSongUrl] 备用解析后请求已失效: ${requestId}`);
-          throw new Error('Request cancelled');
-        }
-        if (isDownloaded) return res?.data?.data as any;
-        let parsedUrl = res?.data?.data?.url || null;
-
-        // 备用解析失败且官方返回了试听片段：回退到试听版（优于完全无声）
-        // 仅当 isTrial（songDetail.url 为试听片段）且用户未关闭该回退时生效
-        const allowTrialFallback = settingsStore.setData.enableTrialFallback !== false;
-        if (!parsedUrl && isTrial && songDetail.url && allowTrialFallback) {
-          console.log('备用解析失败，回退到官方试听片段');
-          parsedUrl = songDetail.url;
-        }
-
-        return await resolveCachedPlaybackUrl(parsedUrl, songData);
-      }
-
-      console.log('官方API解析成功！');
-      if (isDownloaded) return songDetail as any;
-      return await resolveCachedPlaybackUrl(songDetail.url, songData);
-    }
-
-    console.log('官方API返回数据结构异常，进入内置备用解析...');
-    const res = await getParsingMusicUrl(numericId, cloneDeep(songData));
-    // 验证请求
-    if (requestId && !playbackRequestManager.isRequestValid(requestId)) {
-      console.log(`[getSongUrl] 备用解析后请求已失效: ${requestId}`);
-      throw new Error('Request cancelled');
-    }
-    if (isDownloaded) return res?.data?.data as any;
-    const parsedUrl = res?.data?.data?.url || null;
-    return await resolveCachedPlaybackUrl(parsedUrl, songData);
-  } catch (error) {
-    if ((error as Error).message === 'Request cancelled') {
-      throw error;
-    }
-    console.error('官方API请求失败，进入内置备用解析流程:', error);
-    const res = await getParsingMusicUrl(numericId, cloneDeep(songData));
-    if (isDownloaded) return res?.data?.data as any;
-    const parsedUrl = res?.data?.data?.url || null;
-    return await resolveCachedPlaybackUrl(parsedUrl, songData);
+  // 已有可播放地址：直接复用
+  if (songData.playMusicUrl) {
+    if (isDownloaded) return songData.playMusicUrl;
+    return await resolveCachedPlaybackUrl(songData.playMusicUrl, songData);
   }
+
+  // 统一编排器：自定义API优先 → 官方/第三方级联 → 试听回退
+  // 彻底失败时会抛出 ResolveError（带失败原因），由上层弹出精准提示
+  const result = await resolvePlayback(numericId, songData, { forDownload: isDownloaded });
+  checkValid();
+
+  if (!result?.url) {
+    return isDownloaded ? null : await resolveCachedPlaybackUrl(null, songData);
+  }
+
+  // 下载场景：返回完整解析对象（下载流程读取 .url / .type）
+  if (isDownloaded) {
+    return (result.raw ?? { url: result.url, type: result.type, br: result.br }) as any;
+  }
+
+  // 标记是否为 VIP 试听片段，供播放成功后给出 info 提示
+  songData.isTrialPlayback = !!result.isTrial;
+
+  // 播放场景：经磁盘缓存解析后返回可播放地址
+  return await resolveCachedPlaybackUrl(result.url, songData);
 };
 
 /**

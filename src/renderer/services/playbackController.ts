@@ -251,7 +251,12 @@ export const playTrack = async (
   } catch (error) {
     if (gen !== generation) return false;
     console.error('[playbackController] 获取歌曲详情失败:', error);
-    message.error(i18n.global.t('player.playFailed'));
+    // 解析失败：优先使用带原因的 ResolveError 文案，给出精准提示
+    const resolveMsg =
+      (error as any)?.name === 'ResolveError'
+        ? (error as Error).message
+        : i18n.global.t('player.playFailed');
+    message.error(resolveMsg);
     if (playerCore.playMusic) {
       playerCore.playMusic.playLoading = false;
     }
@@ -277,6 +282,10 @@ export const playTrack = async (
       // 9. 播放成功
       playerCore.playMusic.playLoading = false;
       playerCore.playMusic.isFirstPlay = false;
+      // VIP 试听片段：提示用户当前仅为试听
+      if (playerCore.playMusic.isTrialPlayback) {
+        message.info(i18n.global.t('player.resolveFail.trialPlaying'));
+      }
       playbackRequestManager.completeRequest(requestId);
       console.log(`[playbackController] gen=${gen} 播放成功: ${music.name}`);
       return true;

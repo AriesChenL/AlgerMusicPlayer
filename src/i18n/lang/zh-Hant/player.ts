@@ -1,4 +1,11 @@
 export default {
+  resolveFail: {
+    noSource: '未設定可用音源，請在設定中開啟音源解析或新增音源',
+    unblockDisabled: '此歌曲無可用播放網址，且音源解析未開啟（可在設定中開啟）',
+    vipNoSource: 'VIP 歌曲暫無可用音源，可在設定中開啟「VIP 試聽回退」以播放試聽片段',
+    allFailed: '所有音源均解析失敗，可能因版權限制或網路異常，請稍後重試或切換音源',
+    trialPlaying: '目前播放的是 VIP 歌曲試聽片段'
+  },
   nowPlaying: '正在播放',
   playlist: '播放清單',
   lyrics: '歌詞',

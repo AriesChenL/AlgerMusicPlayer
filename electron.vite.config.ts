@@ -8,7 +8,17 @@ import viteCompression from 'vite-plugin-compression';
 import VueDevTools from 'vite-plugin-vue-devtools';
 
 export default defineConfig({
-  main: {},
+  main: {
+    build: {
+      rollupOptions: {
+        // 额外打包落雪音源主进程沙箱 worker（worker_threads 加载）
+        input: {
+          index: resolve('src/main/index.ts'),
+          'lxSandbox.worker': resolve('src/main/modules/lxSandbox/worker.ts')
+        }
+      }
+    }
+  },
   preload: {},
   renderer: {
     resolve: {

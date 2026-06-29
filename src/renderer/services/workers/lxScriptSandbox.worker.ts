@@ -1,5 +1,6 @@
 import type { LxInitedData, LxScriptInfo } from '@/types/lxMusic';
-import * as lxCrypto from '@/utils/lxCrypto';
+
+import * as lxCrypto from '../../../shared/lxCrypto';
 
 type WorkerInitMessage = {
   type: 'initialize';

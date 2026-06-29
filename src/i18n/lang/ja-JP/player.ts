@@ -1,4 +1,14 @@
 export default {
+  resolveFail: {
+    noSource:
+      '利用可能な音源が設定されていません。設定で音源解析を有効にするか音源を追加してください。',
+    unblockDisabled: 'この曲には再生可能なURLがなく、音源解析が無効です（設定で有効にできます）。',
+    vipNoSource:
+      'VIP曲に利用可能な音源がありません。設定で「VIP試聴フォールバック」を有効にすると試聴を再生できます。',
+    allFailed:
+      'すべての音源の解析に失敗しました。著作権またはネットワークの問題の可能性があります。後でもう一度お試しください。',
+    trialPlaying: 'VIP曲の試聴を再生しています。'
+  },
   nowPlaying: '再生中',
   playlist: 'プレイリスト',
   lyrics: '歌詞',

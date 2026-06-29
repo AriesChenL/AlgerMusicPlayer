@@ -13,7 +13,9 @@ import { initializeFonts } from './modules/fonts';
 import { initializeLocalMusicScanner } from './modules/localMusicScanner';
 import { initializeLoginWindow } from './modules/loginWindow';
 import { initLxMusicHttp } from './modules/lxMusicHttp';
+import { registerLxResolve } from './modules/lxSandbox/runner';
 import { initializeMpris, updateMprisCurrentSong, updateMprisPlayState } from './modules/mpris';
+import { registerMusicResolve } from './modules/musicResolve';
 import { initializeOtherApi } from './modules/otherApi';
 import { initializeRemoteControl } from './modules/remoteControl';
 import { initializeShortcuts } from './modules/shortcuts';
@@ -76,6 +78,12 @@ function initialize(configStore: any) {
 
   // 启动音乐API
   startMusicApi();
+
+  // 注册主进程音源解析（GD 音乐台 / 自定义 API / unblock）
+  registerMusicResolve();
+
+  // 注册落雪音源主进程沙箱解析（worker_threads + vm）
+  registerLxResolve();
 
   // 初始化落雪音乐 HTTP 请求处理
   initLxMusicHttp();

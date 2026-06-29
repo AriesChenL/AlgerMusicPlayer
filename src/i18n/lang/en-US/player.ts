@@ -1,4 +1,14 @@
 export default {
+  resolveFail: {
+    noSource: 'No music source configured. Enable source parsing or add a source in Settings.',
+    unblockDisabled:
+      'No playable URL for this song, and source parsing is disabled (enable it in Settings).',
+    vipNoSource:
+      'No source available for this VIP song. Enable "VIP trial fallback" in Settings to play the preview.',
+    allFailed:
+      'All sources failed to resolve, possibly due to copyright or network issues. Try again later or switch source.',
+    trialPlaying: 'Now playing a VIP trial preview.'
+  },
   nowPlaying: 'Now Playing',
   playlist: 'Playlist',
   lyrics: 'Lyrics',

@@ -17,8 +17,11 @@ const api = {
   openLyric: () => ipcRenderer.send('open-lyric'),
   sendLyric: (data) => ipcRenderer.send('send-lyric', data),
   sendSong: (data) => ipcRenderer.send('update-current-song', data),
-  unblockMusic: (id, data, enabledSources) =>
-    ipcRenderer.invoke('unblock-music', id, data, enabledSources),
+  // 统一主进程音源解析（GD 音乐台 / 自定义 API / unblock）
+  musicResolve: (payload) => ipcRenderer.invoke('music:resolve', payload),
+  // 落雪音源主进程沙箱解析（失败时渲染端回退）
+  lxResolve: (payload: { script: string; musicInfo: any; quality: string }) =>
+    ipcRenderer.invoke('lx:resolve', payload),
   importCustomApiPlugin: () => ipcRenderer.invoke('import-custom-api-plugin'),
   importLxMusicScript: () => ipcRenderer.invoke('import-lx-music-script'),
   // 歌词窗口关闭事件

@@ -9,7 +9,31 @@ export interface IElectronAPI {
   restart: () => void;
   openLyric: () => void;
   sendLyric: (_data: string) => void;
-  unblockMusic: (_id: number) => Promise<string>;
+  /** 统一主进程音源解析（GD 音乐台 / 自定义 API / unblock） */
+  musicResolve: (_payload: {
+    provider: 'gdmusic' | 'custom' | 'unblock';
+    track: {
+      id: number;
+      name: string;
+      artists: Array<{ name: string }>;
+      album?: { name?: string };
+    };
+    quality: string;
+    sources?: string[];
+    customApiPlugin?: string;
+  }) => Promise<{
+    url: string;
+    source: string;
+    br?: number;
+    size?: number;
+    platform?: string;
+  } | null>;
+  /** 落雪音源主进程沙箱解析（失败时渲染端回退） */
+  lxResolve: (_payload: {
+    script: string;
+    musicInfo: any;
+    quality: string;
+  }) => Promise<{ url: string; source: string; quality: string } | null>;
   importCustomApiPlugin: () => Promise<{ name: string; content: string } | null>;
   importLxMusicScript: () => Promise<{ name: string; content: string } | null>;
   onLyricWindowClosed: (_callback: () => void) => void;

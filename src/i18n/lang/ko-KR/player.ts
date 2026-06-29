@@ -1,4 +1,15 @@
 export default {
+  resolveFail: {
+    noSource:
+      '사용 가능한 음원이 설정되지 않았습니다. 설정에서 음원 파싱을 켜거나 음원을 추가하세요.',
+    unblockDisabled:
+      '이 곡은 재생 가능한 URL이 없으며 음원 파싱이 꺼져 있습니다(설정에서 켤 수 있음).',
+    vipNoSource:
+      'VIP 곡에 사용 가능한 음원이 없습니다. 설정에서 "VIP 미리듣기 대체"를 켜면 미리듣기를 재생할 수 있습니다.',
+    allFailed:
+      '모든 음원 파싱에 실패했습니다. 저작권 또는 네트워크 문제일 수 있습니다. 나중에 다시 시도하거나 음원을 변경하세요.',
+    trialPlaying: 'VIP 곡 미리듣기를 재생 중입니다.'
+  },
   nowPlaying: '현재 재생 중',
   playlist: '재생 목록',
   lyrics: '가사',

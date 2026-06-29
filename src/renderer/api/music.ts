@@ -1,10 +1,11 @@
 import { musicDB } from '@/hooks/MusicHook';
+import { resolveThirdParty } from '@/services/musicResolver/engine';
 import { useSettingsStore, useUserStore } from '@/store';
 import type { ILyric } from '@/types/lyric';
 import type { SongResult } from '@/types/music';
 import request from '@/utils/request';
 
-import { MusicParser, type MusicParseResult } from './musicParser';
+import type { MusicParseResult } from './musicParser';
 
 const { addData, getData, deleteData } = musicDB;
 
@@ -98,7 +99,23 @@ export const getParsingMusicUrl = async (
   id: number,
   data: SongResult
 ): Promise<MusicParseResult> => {
-  return await MusicParser.parseMusic(id, data);
+  // 委托统一编排器的第三方级联（含 custom），适配回旧的 MusicParseResult 形态
+  const result = await resolveThirdParty(id, data);
+  if (result?.url) {
+    return {
+      data: {
+        code: 200,
+        message: 'success',
+        data: {
+          url: result.url,
+          ...(result.raw || {}),
+          br: result.br,
+          source: result.source
+        }
+      }
+    };
+  }
+  return { data: { code: 404, message: '解析失败', data: undefined } };
 };
 
 // 收藏歌曲
