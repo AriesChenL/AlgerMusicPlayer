@@ -353,20 +353,23 @@ function initializeStatusBarTray(mainWindow: BrowserWindow) {
  */
 export function initializeTray(iconPath: string, mainWindow: BrowserWindow) {
   const isMac = process.platform === 'darwin';
-  const iconSize = isMac ? 18 : 16;
+  const isWin = process.platform === 'win32';
 
   let trayIcon: Electron.NativeImage;
   if (isMac) {
     // macOS 菜单栏使用单色 Aries logo 模板图标（随深浅色自动适配）
     trayIcon = nativeImage
       .createFromPath(join(app.getAppPath(), 'resources/icons', 'note.png'))
-      .resize({ width: iconSize, height: iconSize });
+      .resize({ width: 18, height: 18 });
     trayIcon.setTemplateImage(true);
+  } else if (isWin) {
+    // Windows：多尺寸彩色简化波形 ico，由系统按 DPI 自动选取尺寸，避免缩放发糊
+    trayIcon = nativeImage.createFromPath(join(iconPath, 'tray-win.ico'));
   } else {
-    // Windows / Linux 使用彩色应用图标
+    // Linux：彩色简化波形 png
     trayIcon = nativeImage
       .createFromPath(join(iconPath, 'icon_16x16.png'))
-      .resize({ width: iconSize, height: iconSize });
+      .resize({ width: 16, height: 16 });
   }
 
   tray = new Tray(trayIcon);

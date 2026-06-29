@@ -8,7 +8,8 @@
  *  - 浏览器标签：resources/favicon.ico（透明钴蓝波形）
  *  - 托盘/菜单栏（最小化处）：
  *      resources/icons/note.png · note@2x.png（mac 单色模板，透明）
- *      resources/icon_16x16.png（win/linux 托盘，透明钴蓝）
+ *      resources/icon_16x16.png（linux 托盘，透明钴蓝）
+ *      resources/tray-win.ico（win 托盘，多尺寸彩色简化波形，按 DPI 自适配）
  *  - 应用内品牌图（更新/安装弹窗）：src/renderer/assets/logo.png（钴蓝渐变砖 + 白波形）
  *
  * 用法：node scripts/gen-brand-icons.mjs
@@ -130,7 +131,11 @@ async function main() {
   // ---- 托盘 / 菜单栏（透明） ----
   await svgToPng(svgMono, 18, join(iconsDir, 'note.png')); // mac 模板 @1x
   await svgToPng(svgMono, 36, join(iconsDir, 'note@2x.png')); // mac 模板 @2x
-  await svgToPng(svgTraySolid, 32, join(resDir, 'icon_16x16.png')); // win/linux 托盘（@2x 余量）
+  await svgToPng(svgTraySolid, 32, join(resDir, 'icon_16x16.png')); // linux 托盘（@2x 余量）
+
+  // win 托盘：多尺寸 ico，系统按 DPI 选取，避免缩放发糊
+  const trayIcoBufs = await Promise.all([16, 20, 24, 32, 48].map((s) => tmpPng(svgTraySolid, s)));
+  writeFileSync(join(resDir, 'tray-win.ico'), await pngToIco(trayIcoBufs));
 
   // ---- 应用内品牌图（弹窗） ----
   await svgToPng(svgTile, 512, join(root, 'src/renderer/assets/logo.png'));
