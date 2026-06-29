@@ -1,4 +1,5 @@
 import { isElectron } from '@/utils';
+import { logBehavior } from '@/utils/logger';
 import request from '@/utils/request';
 
 interface IParams {
@@ -9,6 +10,10 @@ interface IParams {
 }
 // 搜索内容
 export const getSearch = (params: IParams) => {
+  // 仅记录首页搜索（offset 为空或 0），避免分页翻页重复埋点
+  if (!params.offset) {
+    logBehavior('search', { keywords: params.keywords, type: params.type });
+  }
   return request.get<any>('/cloudsearch', {
     params
   });

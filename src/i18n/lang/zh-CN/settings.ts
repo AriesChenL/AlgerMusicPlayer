@@ -9,9 +9,39 @@ export default {
     application: '应用设置',
     network: '网络设置',
     system: '系统管理',
+    logs: '日志记录',
     donation: '捐赠支持',
     about: '关于',
     spectrum: '频谱动效'
+  },
+  logs: {
+    enable: '启用日志',
+    enableDesc: '记录应用行为与错误，用于问题排查与行为分析',
+    level: '日志级别',
+    levelDesc: '仅记录不低于所选级别的日志（debug 最详细）',
+    levels: {
+      error: '仅错误',
+      warn: '警告及以上',
+      info: '常规及以上',
+      debug: '全部（调试）'
+    },
+    directory: '存储目录',
+    directoryDesc: '日志文件的保存位置',
+    selectDirectory: '选择目录',
+    openDirectory: '打开目录',
+    reset: '恢复默认',
+    retention: '保留天数',
+    retentionDesc: '超过该天数的日志自动清理（0 表示不自动清理）',
+    days: '天',
+    status: '日志文件',
+    statusDesc: '共 {count} 个文件，占用 {size}',
+    clear: '清空日志',
+    messages: {
+      dirChanged: '日志目录已更新',
+      dirReset: '已恢复默认日志目录',
+      cleared: '已清空 {count} 个日志文件',
+      clearFailed: '清空日志失败'
+    }
   },
   spectrum: {
     enabled: '频谱动效',

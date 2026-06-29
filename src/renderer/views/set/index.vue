@@ -46,6 +46,10 @@
           <system-tab />
         </div>
 
+        <div v-show="currentSection === 'logs'" class="animate-fade-in">
+          <logs-tab />
+        </div>
+
         <div v-show="currentSection === 'about'" class="animate-fade-in">
           <about-tab />
         </div>
@@ -72,6 +76,7 @@ import { SETTINGS_DATA_KEY, SETTINGS_DIALOG_KEY, SETTINGS_MESSAGE_KEY } from './
 import AboutTab from './tabs/AboutTab.vue';
 import ApplicationTab from './tabs/ApplicationTab.vue';
 import BasicTab from './tabs/BasicTab.vue';
+import LogsTab from './tabs/LogsTab.vue';
 import NetworkTab from './tabs/NetworkTab.vue';
 import PlaybackTab from './tabs/PlaybackTab.vue';
 import SystemTab from './tabs/SystemTab.vue';
@@ -132,6 +137,7 @@ const settingSections: SettingSectionConfig[] = [
   { id: 'application', electron: true },
   { id: 'network', electron: true },
   { id: 'system', electron: true },
+  { id: 'logs', electron: true },
   { id: 'about' }
 ];
 

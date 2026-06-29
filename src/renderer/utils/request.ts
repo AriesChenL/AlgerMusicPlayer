@@ -3,6 +3,7 @@ import axios, { InternalAxiosRequestConfig } from 'axios';
 import { useUserStore } from '@/store/modules/user';
 
 import { getSetData, isElectron, isMobile } from '.';
+import { logError } from './logger';
 
 let setData: any = null;
 
@@ -116,6 +117,11 @@ request.interceptors.response.use(
     }
 
     console.error(`重试${MAX_RETRIES}次后仍然失败`);
+    logError('api-error', error, {
+      url: config.url,
+      method: config.method,
+      status: error.response?.status
+    });
     return Promise.reject(error);
   }
 );

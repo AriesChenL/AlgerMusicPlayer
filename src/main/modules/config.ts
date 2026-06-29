@@ -32,6 +32,10 @@ type SetConfig = {
   diskCacheDir: string;
   diskCacheMaxSizeMB: number;
   diskCacheCleanupPolicy: 'lru' | 'fifo';
+  logEnabled: boolean;
+  logLevel: 'error' | 'warn' | 'info' | 'debug';
+  logDir: string;
+  logRetentionDays: number;
 };
 interface StoreType {
   set: SetConfig;
@@ -63,6 +67,15 @@ export function initializeConfig() {
   }
   if (store.get('set.enableDiskCache') === undefined) {
     store.set('set.enableDiskCache', true);
+  }
+  if (store.get('set.logEnabled') === undefined) {
+    store.set('set.logEnabled', true);
+  }
+  if (!store.get('set.logLevel')) {
+    store.set('set.logLevel', 'info');
+  }
+  if (store.get('set.logRetentionDays') === undefined) {
+    store.set('set.logRetentionDays', 14);
   }
 
   // 定义ipcRenderer监听事件

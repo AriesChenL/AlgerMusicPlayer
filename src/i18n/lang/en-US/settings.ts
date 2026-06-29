@@ -9,9 +9,39 @@ export default {
     application: 'Application Settings',
     network: 'Network Settings',
     system: 'System Management',
+    logs: 'Logging',
     donation: 'Donation',
     about: 'About',
     spectrum: 'Spectrum Animation'
+  },
+  logs: {
+    enable: 'Enable Logging',
+    enableDesc: 'Record app behavior and errors for troubleshooting and analysis',
+    level: 'Log Level',
+    levelDesc: 'Only record logs at or above the selected level (debug is most verbose)',
+    levels: {
+      error: 'Errors only',
+      warn: 'Warnings & above',
+      info: 'Info & above',
+      debug: 'All (debug)'
+    },
+    directory: 'Storage Directory',
+    directoryDesc: 'Where log files are saved',
+    selectDirectory: 'Select Folder',
+    openDirectory: 'Open Folder',
+    reset: 'Reset to Default',
+    retention: 'Retention Days',
+    retentionDesc: 'Logs older than this are auto-cleaned (0 = never)',
+    days: 'days',
+    status: 'Log Files',
+    statusDesc: '{count} files, {size} used',
+    clear: 'Clear Logs',
+    messages: {
+      dirChanged: 'Log directory updated',
+      dirReset: 'Restored default log directory',
+      cleared: 'Cleared {count} log files',
+      clearFailed: 'Failed to clear logs'
+    }
   },
   spectrum: {
     enabled: 'Spectrum Animation',

@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
 import homeRouter from '@/router/home';
 import otherRouter from '@/router/other';
+import { logBehavior } from '@/utils/logger';
 
 import { useUserStore } from '../store/modules/user';
 
@@ -40,13 +41,17 @@ const router = createRouter({
   history: createWebHashHistory()
 });
 
-// 添加全局后置钩子，记录页面访问
-router.afterEach((to) => {
+// 添加全局后置钩子，记录页面访问（行为日志）
+router.afterEach((to, from) => {
   const pageName = to.name?.toString() || to.path;
   // 使用setTimeout避免阻塞路由导航
   setTimeout(() => {
     const userId = getUserId();
-    console.log('pageName', pageName, userId);
+    logBehavior('navigate', {
+      to: pageName,
+      from: from.name?.toString() || from.path,
+      userId
+    });
   }, 100);
 });
 

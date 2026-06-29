@@ -45,5 +45,9 @@
   "enableDiskCache": true,
   "diskCacheDir": "",
   "diskCacheMaxSizeMB": 4096,
-  "diskCacheCleanupPolicy": "lru"
+  "diskCacheCleanupPolicy": "lru",
+  "logEnabled": true,
+  "logLevel": "info",
+  "logDir": "",
+  "logRetentionDays": 14
 }

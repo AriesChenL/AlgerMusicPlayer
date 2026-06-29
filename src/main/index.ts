@@ -11,6 +11,7 @@ import { initializeDownloadManager, setDownloadManagerWindow } from './modules/d
 import { initializeFileManager } from './modules/fileManager';
 import { initializeFonts } from './modules/fonts';
 import { initializeLocalMusicScanner } from './modules/localMusicScanner';
+import { initializeLogger, logBehaviorMain } from './modules/logger';
 import { initializeLoginWindow } from './modules/loginWindow';
 import { initLxMusicHttp } from './modules/lxMusicHttp';
 import { registerLxResolve } from './modules/lxSandbox/runner';
@@ -172,6 +173,9 @@ if (!isSingleInstance) {
     // 重新初始化配置管理以获取完整的配置存储
     const store = initializeConfig();
 
+    // 初始化日志模块（注册 IPC、捕获主进程全局异常、记录启动）
+    initializeLogger();
+
     // 初始化应用
     initialize(store);
 
@@ -195,12 +199,14 @@ if (!isSingleInstance) {
   ipcMain.on('update-play-state', (_, playing: boolean) => {
     updatePlayState(playing);
     updateMprisPlayState(playing);
+    logBehaviorMain('play-state', { playing });
   });
 
   // 监听当前歌曲变化
   ipcMain.on('update-current-song', (_, song: any) => {
     updateCurrentSong(song);
     updateMprisCurrentSong(song);
+    logBehaviorMain('song-change', { id: song?.id, name: song?.name });
   });
 
   // 监听菜单栏歌词更新（macOS）。渲染进程发送 { content, time, sender } 的 JSON 字符串

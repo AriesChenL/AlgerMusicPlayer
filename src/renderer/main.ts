@@ -15,6 +15,7 @@ import { isElectron } from '@/utils';
 
 import App from './App.vue';
 import directives from './directive';
+import { logError } from './utils/logger';
 
 // 读取持久化语言（与 settings store 的来源保持一致），mount 前预加载，避免首屏语言闪烁
 function readPersistedLanguage(): string {
@@ -38,6 +39,22 @@ async function bootstrap() {
   (i18n.global.locale as any).value = startLang;
 
   const app = createApp(App);
+
+  // 全局错误捕获 → 写入日志，用于错误分析
+  app.config.errorHandler = (err, _instance, info) => {
+    console.error('[Vue Error]', err, info);
+    logError('vue-error', err, { info });
+  };
+  window.addEventListener('error', (e) => {
+    logError('window-error', e.error || e.message, {
+      filename: e.filename,
+      lineno: e.lineno,
+      colno: e.colno
+    });
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    logError('unhandled-rejection', e.reason);
+  });
 
   Object.keys(directives).forEach((key: string) => {
     app.directive(key, directives[key as keyof typeof directives]);

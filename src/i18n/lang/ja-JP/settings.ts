@@ -9,9 +9,39 @@ export default {
     application: 'アプリケーション設定',
     network: 'ネットワーク設定',
     system: 'システム管理',
+    logs: 'ログ記録',
     donation: '寄付サポート',
     about: 'について',
     spectrum: 'スペクトラム演出'
+  },
+  logs: {
+    enable: 'ログを有効化',
+    enableDesc: 'アプリの動作とエラーを記録し、問題調査と行動分析に利用します',
+    level: 'ログレベル',
+    levelDesc: '選択したレベル以上のログのみ記録します（debug が最も詳細）',
+    levels: {
+      error: 'エラーのみ',
+      warn: '警告以上',
+      info: '通常以上',
+      debug: 'すべて（デバッグ）'
+    },
+    directory: '保存先',
+    directoryDesc: 'ログファイルの保存場所',
+    selectDirectory: 'フォルダを選択',
+    openDirectory: 'フォルダを開く',
+    reset: '既定に戻す',
+    retention: '保存日数',
+    retentionDesc: 'この日数を超えたログを自動削除します（0 で削除しない）',
+    days: '日',
+    status: 'ログファイル',
+    statusDesc: '合計 {count} 件、{size} 使用',
+    clear: 'ログを消去',
+    messages: {
+      dirChanged: 'ログの保存先を更新しました',
+      dirReset: '既定の保存先に戻しました',
+      cleared: '{count} 件のログを消去しました',
+      clearFailed: 'ログの消去に失敗しました'
+    }
   },
   spectrum: {
     enabled: 'スペクトラム演出',

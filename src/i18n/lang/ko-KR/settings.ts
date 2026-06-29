@@ -9,9 +9,39 @@ export default {
     application: '애플리케이션 설정',
     network: '네트워크 설정',
     system: '시스템 관리',
+    logs: '로그 기록',
     donation: '후원 지원',
     about: '정보',
     spectrum: '스펙트럼 효과'
+  },
+  logs: {
+    enable: '로그 사용',
+    enableDesc: '문제 해결과 행동 분석을 위해 앱 동작과 오류를 기록합니다',
+    level: '로그 레벨',
+    levelDesc: '선택한 레벨 이상의 로그만 기록합니다(debug가 가장 상세)',
+    levels: {
+      error: '오류만',
+      warn: '경고 이상',
+      info: '일반 이상',
+      debug: '전체(디버그)'
+    },
+    directory: '저장 위치',
+    directoryDesc: '로그 파일이 저장되는 위치',
+    selectDirectory: '폴더 선택',
+    openDirectory: '폴더 열기',
+    reset: '기본값으로',
+    retention: '보관 일수',
+    retentionDesc: '이 기간이 지난 로그는 자동 삭제됩니다(0이면 삭제 안 함)',
+    days: '일',
+    status: '로그 파일',
+    statusDesc: '총 {count}개 파일, {size} 사용',
+    clear: '로그 비우기',
+    messages: {
+      dirChanged: '로그 디렉터리가 변경되었습니다',
+      dirReset: '기본 로그 디렉터리로 복원했습니다',
+      cleared: '로그 파일 {count}개를 삭제했습니다',
+      clearFailed: '로그 삭제에 실패했습니다'
+    }
   },
   spectrum: {
     enabled: '스펙트럼 효과',

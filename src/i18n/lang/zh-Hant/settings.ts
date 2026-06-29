@@ -9,9 +9,39 @@ export default {
     application: '應用程式設定',
     network: '網路設定',
     system: '系統管理',
+    logs: '日誌記錄',
     donation: '捐贈支持',
     about: '關於',
     spectrum: '頻譜動效'
+  },
+  logs: {
+    enable: '啟用日誌',
+    enableDesc: '記錄應用行為與錯誤，用於問題排查與行為分析',
+    level: '日誌級別',
+    levelDesc: '僅記錄不低於所選級別的日誌（debug 最詳細）',
+    levels: {
+      error: '僅錯誤',
+      warn: '警告及以上',
+      info: '常規及以上',
+      debug: '全部（除錯）'
+    },
+    directory: '儲存目錄',
+    directoryDesc: '日誌檔案的儲存位置',
+    selectDirectory: '選擇目錄',
+    openDirectory: '開啟目錄',
+    reset: '恢復預設',
+    retention: '保留天數',
+    retentionDesc: '超過該天數的日誌自動清理（0 表示不自動清理）',
+    days: '天',
+    status: '日誌檔案',
+    statusDesc: '共 {count} 個檔案，佔用 {size}',
+    clear: '清空日誌',
+    messages: {
+      dirChanged: '日誌目錄已更新',
+      dirReset: '已恢復預設日誌目錄',
+      cleared: '已清空 {count} 個日誌檔案',
+      clearFailed: '清空日誌失敗'
+    }
   },
   spectrum: {
     enabled: '頻譜動效',

@@ -18,6 +18,7 @@ import type {
   DownloadTaskState
 } from '../../shared/download';
 import { getStore } from './config';
+import { logBehaviorMain } from './logger';
 
 // ─── Helpers ─────────────────────────────────────────────────────────
 
@@ -171,6 +172,10 @@ class DownloadManager {
     this.persistQueue();
     this.sendStateChange(task);
     this.processQueue();
+    logBehaviorMain('download', {
+      id: payload.songInfo?.id,
+      name: payload.songInfo?.name || payload.filename
+    });
     return taskId;
   }
 
