@@ -111,6 +111,24 @@ watch(
   }
 );
 
+// 监听音源解析相关设置变化：使播放列表中已解析的 URL 失效，确保修改立即生效
+// （URL 结果缓存已由 engine 的 configKey 指纹自动失效，此处处理歌曲对象上的 playMusicUrl）
+watch(
+  () =>
+    JSON.stringify([
+      settingsStore.setData.enabledMusicSources,
+      settingsStore.setData.musicQuality,
+      settingsStore.setData.enableMusicUnblock,
+      settingsStore.setData.enableTrialFallback,
+      settingsStore.setData.customApiPlugin,
+      settingsStore.setData.activeLxMusicApiId
+    ]),
+  async () => {
+    const { usePlaylistStore } = await import('@/store/modules/playlist');
+    usePlaylistStore().invalidateResolvedUrls();
+  }
+);
+
 const handleSetLanguage = (value: string) => {
   console.log('应用语言变更:', value);
   if (value) {

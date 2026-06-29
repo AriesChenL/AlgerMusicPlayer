@@ -51,6 +51,7 @@ const buildContext = (
   hasSongConfig: boolean;
   enableUnblock: boolean;
   enableTrialFallback: boolean;
+  configKey: string;
 } => {
   const settingsStore = useSettingsStore();
   const setData = settingsStore.setData || ({} as any);
@@ -59,22 +60,36 @@ const buildContext = (
   const sources: Platform[] = songConfig?.sources?.length
     ? songConfig.sources
     : setData.enabledMusicSources || [];
+  const quality = setData.musicQuality || 'higher';
+  const enableUnblock = Boolean(setData.enableMusicUnblock);
+  const enableTrialFallback = setData.enableTrialFallback !== false;
 
   const ctx: ResolveContext = {
     track: toTrackMeta(id, song),
-    quality: setData.musicQuality || 'higher',
+    quality,
     sources,
     customApiPlugin: setData.customApiPlugin,
     forDownload: opts.forDownload,
     signal: opts.signal
   };
 
+  // 解析配置指纹：任一影响解析的设置变化即让 URL 缓存失效，保证修改立即生效
+  const configKey = JSON.stringify({
+    q: quality,
+    s: [...sources].sort(),
+    u: enableUnblock,
+    t: enableTrialFallback,
+    c: setData.customApiPlugin || '',
+    lx: setData.activeLxMusicApiId || ''
+  });
+
   return {
     ctx,
     hasSongConfig: Boolean(songConfig),
     // 与旧 MusicParser 一致：未显式开启即视为关闭第三方解灰
-    enableUnblock: Boolean(setData.enableMusicUnblock),
-    enableTrialFallback: setData.enableTrialFallback !== false
+    enableUnblock,
+    enableTrialFallback,
+    configKey
   };
 };
 
@@ -128,12 +143,13 @@ const fallbackWebMusic = async (id: number): Promise<ResolveResult | null> => {
 const runThirdParty = async (
   ctx: ResolveContext,
   enableUnblock: boolean,
+  configKey: string,
   providers: MusicProvider[] = THIRD_PARTY
 ): Promise<ResolveResult | null> => {
   if (!isElectron) return fallbackWebMusic(ctx.track.id);
 
   // 命中缓存直接返回
-  const cached = await ResolveCache.get(ctx.track.id, ctx.quality, ctx.sources);
+  const cached = await ResolveCache.get(ctx.track.id, configKey);
   if (cached?.url) return cached;
 
   // 与旧 MusicParser 一致：解析总开关关闭时直接返回（不走远端 /music 兜底）
@@ -142,7 +158,7 @@ const runThirdParty = async (
   for (const provider of providers) {
     const result = await tryProvider(provider, ctx);
     if (result?.url) {
-      await ResolveCache.set(ctx.track.id, result, ctx.quality, ctx.sources);
+      await ResolveCache.set(ctx.track.id, result, configKey);
       return result;
     }
   }
@@ -159,12 +175,16 @@ export const resolvePlayback = async (
   song: SongResult,
   opts: ResolveOptions = {}
 ): Promise<ResolveResult | null> => {
-  const { ctx, hasSongConfig, enableUnblock, enableTrialFallback } = buildContext(id, song, opts);
+  const { ctx, hasSongConfig, enableUnblock, enableTrialFallback, configKey } = buildContext(
+    id,
+    song,
+    opts
+  );
 
   // 1) 自定义 API 始终最优先，不受 enableMusicUnblock 约束
   const custom = await tryProvider(customProvider, ctx);
   if (custom?.url) {
-    await ResolveCache.set(ctx.track.id, custom, ctx.quality, ctx.sources);
+    await ResolveCache.set(ctx.track.id, custom, configKey);
     return custom;
   }
 
@@ -179,7 +199,7 @@ export const resolvePlayback = async (
 
   if (hasSongConfig) {
     // 歌曲级音源：第三方优先，官方其后
-    const tp = await runThirdParty(ctx, enableUnblock);
+    const tp = await runThirdParty(ctx, enableUnblock, configKey);
     if (tp?.url) return tp;
     const ne = await runNetease();
     if (ne?.url) return ne;
@@ -187,7 +207,7 @@ export const resolvePlayback = async (
     // 全局：官方优先，第三方其后
     const ne = await runNetease();
     if (ne?.url) return ne;
-    const tp = await runThirdParty(ctx, enableUnblock);
+    const tp = await runThirdParty(ctx, enableUnblock, configKey);
     if (tp?.url) return tp;
   }
 
@@ -220,7 +240,7 @@ export const resolveThirdParty = async (
   id: number,
   song: SongResult
 ): Promise<ResolveResult | null> => {
-  const { ctx, enableUnblock } = buildContext(id, song, {});
+  const { ctx, enableUnblock, configKey } = buildContext(id, song, {});
   const providers = [customProvider, ...THIRD_PARTY].sort((a, b) => a.priority - b.priority);
-  return runThirdParty(ctx, enableUnblock, providers);
+  return runThirdParty(ctx, enableUnblock, configKey, providers);
 };

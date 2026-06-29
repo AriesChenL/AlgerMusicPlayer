@@ -746,6 +746,21 @@ export const usePlaylistStore = defineStore(
           // 触发响应式更新
           playList.value = [...playList.value];
         }
+      },
+      /**
+       * 使播放列表中已解析的网络 URL 失效，让下次播放按最新设置重新解析。
+       * 用于音源相关设置变更后立即生效；不影响本地音乐与当前正在播放的音频。
+       */
+      invalidateResolvedUrls: () => {
+        let changed = false;
+        playList.value.forEach((song) => {
+          if (song.playMusicUrl && !song.playMusicUrl.startsWith('local://')) {
+            song.playMusicUrl = undefined;
+            song.expiredAt = undefined;
+            changed = true;
+          }
+        });
+        if (changed) playList.value = [...playList.value];
       }
     };
   },

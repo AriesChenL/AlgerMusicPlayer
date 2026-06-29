@@ -5,8 +5,9 @@
  *  - IndexedDB `music_url_cache`（成功 URL，30 分钟）
  *  - 内存 failedCacheMap（失败标记，1 分钟）
  *
- * 并把缓存有效性校验从「仅比对音源」升级为「音源 + 音质」一致，
- * 修正历史上切换音质后旧缓存仍命中的问题。
+ * 缓存有效性以「解析配置指纹」configKey 校验：音质、音源列表、解析总开关、
+ * 试听回退、自定义 API 插件、激活的落雪脚本等任一改变都会使旧缓存失效，
+ * 从而保证用户修改设置后立即生效（由 engine 统一计算 configKey 传入）。
  *
  * 注意：磁盘音频文件缓存（主进程 cache.ts）是另一层（缓存音频字节而非 URL），
  * 不在此处统一，由 resolveCachedPlaybackUrl 处理。
@@ -15,7 +16,6 @@
 import { cloneDeep } from 'lodash';
 
 import { musicDB } from '@/hooks/MusicHook';
-import type { Platform } from '@/types/music';
 
 import type { ResolveResult } from './types';
 
@@ -31,33 +31,26 @@ const CONFIG = {
 interface CachedEntry {
   id: number;
   result: ResolveResult;
-  quality: string;
-  sourcesKey: string;
+  /** 解析配置指纹；与当前不一致则缓存失效 */
+  configKey: string;
   createTime: number;
 }
-
-const sourcesKeyOf = (sources: Platform[] = []): string => JSON.stringify([...sources].sort());
 
 /** 内存失败缓存：key 为 `${id}_${provider}` */
 const failedMap = new Map<string, number>();
 
 export class ResolveCache {
-  /** 读取成功 URL 缓存；音质或音源配置变化、或已过期则视为未命中 */
-  static async get(
-    id: number,
-    quality: string,
-    sources: Platform[]
-  ): Promise<ResolveResult | null> {
+  /** 读取成功 URL 缓存；解析配置变化或已过期则视为未命中 */
+  static async get(id: number, configKey: string): Promise<ResolveResult | null> {
     try {
       const cached = (await getData('music_url_cache', id)) as CachedEntry | undefined;
       if (!cached?.createTime) return null;
 
       const expired = Date.now() - cached.createTime >= CONFIG.URL_TTL;
-      const sameQuality = cached.quality === quality;
-      const sameSources = cached.sourcesKey === sourcesKeyOf(sources);
-
-      if (expired || !sameQuality || !sameSources) {
+      if (expired || cached.configKey !== configKey) {
         await deleteData('music_url_cache', id);
+        // 解析配置已变化：一并清除该歌的失败缓存，避免 1 分钟内被跳过导致设置不生效
+        if (cached.configKey !== configKey) this.clearFailed(id);
         return null;
       }
       return cached.result;
@@ -68,18 +61,12 @@ export class ResolveCache {
   }
 
   /** 写入成功 URL 缓存。试听回退结果不应写入（由调用方控制） */
-  static async set(
-    id: number,
-    result: ResolveResult,
-    quality: string,
-    sources: Platform[]
-  ): Promise<void> {
+  static async set(id: number, result: ResolveResult, configKey: string): Promise<void> {
     try {
       const entry: CachedEntry = {
         id,
         result: cloneDeep(result),
-        quality,
-        sourcesKey: sourcesKeyOf(sources),
+        configKey,
         createTime: Date.now()
       };
       await saveData('music_url_cache', entry);
