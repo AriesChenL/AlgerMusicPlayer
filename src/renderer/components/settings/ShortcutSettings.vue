@@ -147,7 +147,7 @@
 </template>
 
 <script setup lang="ts">
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { useMessage } from 'naive-ui';
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';

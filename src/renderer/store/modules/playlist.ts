@@ -1,5 +1,5 @@
 import { useThrottleFn } from '@vueuse/core';
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 import { createDiscreteApi } from 'naive-ui';
 import { defineStore, storeToRefs } from 'pinia';
 import { computed, ref, shallowRef, triggerRef } from 'vue';

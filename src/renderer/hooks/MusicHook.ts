@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { computed, type ComputedRef, nextTick, onUnmounted, ref, watch } from 'vue';
 
 import useIndexedDB from '@/hooks/IndexDBHook';

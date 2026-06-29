@@ -13,7 +13,7 @@
  * 不在此处统一，由 resolveCachedPlaybackUrl 处理。
  */
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 
 import { musicDB } from '@/hooks/MusicHook';
 

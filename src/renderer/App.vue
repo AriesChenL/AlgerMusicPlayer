@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { darkTheme, type GlobalThemeOverrides, lightTheme } from 'naive-ui';
 import { computed, nextTick, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';

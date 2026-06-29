@@ -1,4 +1,4 @@
-import { cloneDeep, isArray, mergeWith } from 'lodash';
+import { cloneDeep, isArray, mergeWith } from 'lodash-es';
 import { defineStore } from 'pinia';
 import { ref, watch } from 'vue';
 

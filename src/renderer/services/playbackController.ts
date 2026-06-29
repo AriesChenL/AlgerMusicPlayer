@@ -7,7 +7,7 @@
  * 导出：playTrack, reparseCurrentSong, initializePlayState, setupUrlExpiredHandler, getCurrentGeneration
  */
 
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { createDiscreteApi } from 'naive-ui';
 
 import i18n from '@/../i18n/renderer';
